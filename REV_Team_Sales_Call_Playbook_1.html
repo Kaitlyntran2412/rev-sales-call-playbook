@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REV Team — Sales Call Playbook — Product × DM × 3 USP × ROI × DISC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16233A;
+  --ink-soft:#2B3A54;
+  --paper:#FAF7F1;
+  --card:#FFFFFF;
+  --brass:#B9873E;
+  --brass-deep:#8F672B;
+  --line:#E4DDCB;
+  --text:#26241E;
+  --muted:#716F66;
+  --d-color:#B84B36;
+  --i-color:#C99A2E;
+  --s-color:#3E7A68;
+  --c-color:#3C5C82;
+  --radius:2px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:'IBM Plex Sans', system-ui, sans-serif;
+  background:var(--paper);
+  color:var(--text);
+  line-height:1.6;
+}
+h1,h2,h3{font-family:'Fraunces', Georgia, serif; color:var(--ink); font-weight:600; letter-spacing:-0.01em;}
+h1{font-size:2.1rem; margin:0 0 .2rem;}
+h3{font-size:1.05rem; margin:1.6rem 0 .5rem; color:var(--brass-deep); text-transform:uppercase; letter-spacing:.04em; font-weight:600;}
+p{margin:.4rem 0 .8rem;}
+.hint{font-family:'IBM Plex Sans'; text-transform:none; letter-spacing:0; color:var(--muted); font-size:.8rem; font-weight:400;}
+
+/* layout */
+.app{display:flex; min-height:100vh;}
+.sidebar{
+  width:300px; flex:none; background:var(--ink); color:#EDEAE0;
+  padding:1.6rem 1.1rem 1.6rem; position:sticky; top:0; height:100vh; overflow-y:auto;
+}
+.brand{padding:0 .4rem 1.1rem; border-bottom:1px solid rgba(255,255,255,.14); margin-bottom:1.1rem;}
+.brand .mark{font-family:'IBM Plex Mono', monospace; font-size:.7rem; letter-spacing:.14em; color:var(--brass); text-transform:uppercase;}
+.brand h2{font-family:'Fraunces', serif; color:#fff; font-size:1.28rem; margin:.35rem 0 .15rem; line-height:1.25;}
+.brand .tag{font-size:.78rem; color:#B9B6AA;}
+
+.progress-wrap{padding:0 .4rem 1.2rem;}
+.progress-label{display:flex; justify-content:space-between; font-size:.72rem; color:#B9B6AA; margin-bottom:.35rem; font-family:'IBM Plex Mono', monospace; letter-spacing:.03em;}
+.progress-bar{height:5px; background:rgba(255,255,255,.14); border-radius:3px; overflow:hidden;}
+.progress-fill{height:100%; width:0%; background:var(--brass); transition:width .35s ease;}
+
+nav.nav-list{display:flex; flex-direction:column; gap:2px;}
+.nav-item{
+  display:flex; align-items:center; gap:.6rem; width:100%; text-align:left;
+  background:transparent; border:none; color:#D7D4C7; padding:.5rem .5rem;
+  border-radius:var(--radius); cursor:pointer; font-family:'IBM Plex Sans'; font-size:.87rem;
+}
+.nav-item:hover{background:rgba(255,255,255,.06);}
+.nav-item.active{background:rgba(185,135,62,.18); color:#fff;}
+.nav-num{font-family:'IBM Plex Mono', monospace; font-size:.72rem; color:var(--brass); width:2.1rem; flex:none;}
+.nav-label{flex:1;}
+.nav-check{opacity:0; color:#8FBBA4; font-size:.85rem;}
+.nav-item.visited .nav-check{opacity:1;}
+
+.reset-btn{
+  margin-top:1rem; width:100%; background:transparent; border:1px solid rgba(255,255,255,.18);
+  color:#B9B6AA; padding:.5rem; font-size:.72rem; border-radius:var(--radius); cursor:pointer;
+  font-family:'IBM Plex Mono', monospace; letter-spacing:.03em;
+}
+.reset-btn:hover{border-color:var(--brass); color:#fff;}
+
+/* content */
+.content{flex:1; padding:3rem 4rem 5rem; max-width:840px;}
+.panel{display:none;}
+.panel.active{display:block; animation:fade .25s ease;}
+@keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+.panel-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--brass-deep); margin-bottom:.5rem;}
+.panel-sub{color:var(--muted); font-size:1.05rem; margin-top:0;}
+
+table{border-collapse:collapse; width:100%; margin:.6rem 0 1rem; font-size:.92rem;}
+th,td{border:1px solid var(--line); padding:.55rem .7rem; text-align:left; vertical-align:top;}
+th{background:var(--ink); color:#fff; font-weight:600; font-size:.82rem;}
+tr:nth-child(even) td{background:#F3EFE4;}
+
+.usp-list{padding-left:1.2rem;}
+.usp-list li{margin-bottom:.5rem;}
+
+.disc-grid{display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin:.6rem 0 1.2rem;}
+.disc-card{
+  border-left:4px solid var(--muted); background:var(--card); padding:.75rem .9rem;
+  border-radius:0 var(--radius) var(--radius) 0; box-shadow:0 1px 2px rgba(0,0,0,.04);
+}
+.disc-card p{margin:.25rem 0 0; font-style:italic; font-size:.92rem;}
+.disc-tag{font-family:'IBM Plex Mono', monospace; font-size:.72rem; letter-spacing:.05em; font-weight:600;}
+.disc-D{border-color:var(--d-color);} .disc-D .disc-tag{color:var(--d-color);}
+.disc-I{border-color:var(--i-color);} .disc-I .disc-tag{color:var(--i-color);}
+.disc-S{border-color:var(--s-color);} .disc-S .disc-tag{color:var(--s-color);}
+.disc-C{border-color:var(--c-color);} .disc-C .disc-tag{color:var(--c-color);}
+
+.callout{border:1px solid var(--line); border-left:4px solid var(--brass); background:#FFF; padding:.8rem 1rem; margin:.8rem 0; font-size:.92rem; border-radius:0 var(--radius) var(--radius) 0;}
+.callout-warn{border-left-color:#B84B36;}
+
+.quote-line{border-left:3px solid var(--brass); padding:.4rem .8rem; margin:.5rem 0; background:#fff;}
+.quote-line b{color:var(--ink);}
+
+.prompt-box{
+  position:relative; background:#0F1A2B; color:#E7E4D8; padding:1.1rem 1.2rem; border-radius:var(--radius);
+  font-family:'IBM Plex Mono', monospace; font-size:.82rem; line-height:1.65; white-space:pre-wrap; margin:.7rem 0 1.3rem;
+}
+.copy-btn{
+  position:absolute; top:.6rem; right:.6rem; background:var(--brass); color:#1a1204; border:none;
+  padding:.32rem .7rem; font-size:.72rem; font-family:'IBM Plex Mono',monospace; border-radius:var(--radius);
+  cursor:pointer; letter-spacing:.03em;
+}
+.copy-btn:hover{background:#D3A85B;}
+.copy-btn.copied{background:#3E7A68; color:#fff;}
+
+.steps{counter-reset:step; list-style:none; padding:0; margin:.8rem 0 1.3rem;}
+.steps li{counter-increment:step; position:relative; padding:.4rem 0 .4rem 2.4rem; margin-bottom:.3rem;}
+.steps li::before{
+  content:counter(step); position:absolute; left:0; top:.3rem; width:1.6rem; height:1.6rem;
+  border-radius:50%; background:var(--ink); color:var(--brass); font-family:'IBM Plex Mono',monospace;
+  font-size:.78rem; display:flex; align-items:center; justify-content:center; font-weight:600;
+}
+
+.footer-nav{display:flex; justify-content:space-between; margin-top:2.6rem; padding-top:1.2rem; border-top:1px solid var(--line);}
+.footer-nav button{
+  background:var(--ink); color:#fff; border:none; padding:.6rem 1.1rem; font-family:'IBM Plex Sans';
+  font-size:.85rem; border-radius:var(--radius); cursor:pointer;
+}
+.footer-nav button:hover{background:var(--ink-soft);}
+.footer-nav button:disabled{opacity:.3; cursor:default;}
+
+.script-card{border:1px solid var(--line); background:var(--card); border-radius:var(--radius); padding:1.1rem 1.3rem; margin:1.3rem 0; box-shadow:0 1px 2px rgba(0,0,0,.04);}
+.script-card-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:.6rem; justify-content:space-between;}
+.script-title{margin:0; font-size:1.15rem;}
+.script-tag{font-family:'IBM Plex Mono', monospace; font-size:.72rem; color:#fff; background:var(--ink); padding:.2rem .55rem; border-radius:2px; white-space:nowrap;}
+.script-context{color:var(--muted); font-size:.9rem; margin:.5rem 0 .9rem; padding-bottom:.7rem; border-bottom:1px dashed var(--line);}
+.script-step{margin-bottom:.7rem;}
+.script-step-label{display:block; font-family:'IBM Plex Mono', monospace; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--brass-deep); font-weight:600; margin-bottom:.2rem;}
+.script-step p{margin:.1rem 0;}
+.script-step ul{margin:.2rem 0; padding-left:1.1rem;}
+.script-step li{margin-bottom:.2rem;}
+
+.objection-card{margin:1.2rem 0 1.6rem;}
+.objection-card h3{margin-bottom:.4rem;}
+.objection-card table{font-size:.88rem;}
+.obj-key{font-weight:600; color:var(--ink); width:160px; white-space:nowrap; background:#F3EFE4;}
+
+@media (max-width:880px){
+  .app{flex-direction:column;}
+  .sidebar{width:100%; height:auto; position:relative;}
+  .content{padding:2rem 1.3rem 3rem;}
+  .disc-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="mark">PMAX &middot; REV Team</div>
+      <h2>Sales Call Playbook</h2>
+      <div class="tag">Product &times; DM &times; 3 USP &times; ROI &times; DISC</div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span id="progress-text">0/16 phần đã đọc</span><span id="progress-pct">0%</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+    <nav class="nav-list" id="nav-list">
+      <button class="nav-item" data-target="framework">
+    <span class="nav-num">00</span>
+    <span class="nav-label">Lý thuyết Framework</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="level">
+    <span class="nav-num">0.4</span>
+    <span class="nav-label">Level & Vai trò DM</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="prep">
+    <span class="nav-num">0.5</span>
+    <span class="nav-label">Chuẩn bị trước Call</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="ai-skill">
+    <span class="nav-num">0.9</span>
+    <span class="nav-label">Cài AI Skill</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="influencer">
+    <span class="nav-num">01</span>
+    <span class="nav-label">Influencer</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="creative">
+    <span class="nav-num">02</span>
+    <span class="nav-label">Creative</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="strategy">
+    <span class="nav-num">03</span>
+    <span class="nav-label">Strategy</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="scanmax">
+    <span class="nav-num">04</span>
+    <span class="nav-label">ScanMax</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="auditvista">
+    <span class="nav-num">05</span>
+    <span class="nav-label">Audit Vista</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="media">
+    <span class="nav-num">06</span>
+    <span class="nav-label">Media</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="leadgen">
+    <span class="nav-num">07</span>
+    <span class="nav-label">Leadgen</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="branding">
+    <span class="nav-num">08</span>
+    <span class="nav-label">Branding</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="mmm">
+    <span class="nav-num">09</span>
+    <span class="nav-label">MMM</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="full-scripts">
+    <span class="nav-num">10</span>
+    <span class="nav-label">Script mẫu đầy đủ</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="objections">
+    <span class="nav-num">11</span>
+    <span class="nav-label">Xử lý từ chối</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+<button class="nav-item" data-target="appendix">
+    <span class="nav-num">12</span>
+    <span class="nav-label">Phụ lục</span>
+    <span class="nav-check" aria-hidden="true">✓</span>
+  </button>
+    </nav>
+    <button class="reset-btn" id="reset-btn">↺ Reset tiến độ đọc</button>
+  </aside>
+
+  <main class="content">
+
+    <section class="panel" id="panel-framework" data-title="Lý thuyết Framework">
+      <div class="panel-eyebrow">Phần 1</div>
+      <h1>Lý thuyết Framework</h1>
+      <p class="panel-sub">Vì sao cần cá nhân hóa script theo 5 biến số</p>
+
+      <h3>Vì sao cần framework này</h3>
+      <p>Sales Call Decision Playbook hiện có đã cho BD một khung chuẩn cho toàn bộ hành trình cuộc gọi: Research &rarr; Trigger &rarr; Opening &rarr; Discovery &rarr; Pain &rarr; Solution Consulting &rarr; Value &rarr; Meeting &rarr; Objection Handling.</p>
+      <p>Framework này bổ sung cách cá nhân hóa nội dung ở đúng những bước quan trọng nhất — Solution Story và Value Proposition — thay vì dùng một kịch bản chung cho mọi khách hàng, mọi sản phẩm.</p>
+
+      <h3>Năm biến số trong framework</h3>
+      <table>
+        <thead><tr><th>Biến số</th><th>Trả lời câu hỏi</th><th>Vai trò trong cuộc gọi</th></tr></thead>
+        <tbody>
+          <tr><td><b>Product</b></td><td>Nói CÁI GÌ?</td><td>Chọn đúng 1 trong 9 nhóm giải pháp PMAX phù hợp với pain của khách.</td></tr>
+          <tr><td><b>DM</b></td><td>Nói VỚI AI?</td><td>Xác định chức danh, KPI, buying stage của người đang nghe máy.</td></tr>
+          <tr><td><b>3 USP</b></td><td>Nói ĐIỂM GÌ?</td><td>Chỉ chốt 3 điểm mạnh nhất của sản phẩm, tránh liệt kê lan man.</td></tr>
+          <tr><td><b>ROI</b></td><td>Nói BẰNG CHỨNG GÌ?</td><td>Dịch USP sang ngôn ngữ tài chính/kết quả đo lường được.</td></tr>
+          <tr><td><b>DISC</b></td><td>Nói NHƯ THẾ NÀO?</td><td>Điều chỉnh nhịp độ, ngôn từ theo phong cách hành vi của DM.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>DISC &mdash; bảng tham chiếu nhanh</h3>
+      <div class="disc-grid">
+        <div class="disc-card disc-D"><span class="disc-tag">D &middot; Dominance</span><p>Nói nhanh, ngắt lời, hỏi thẳng &ldquo;vậy được gì&rdquo;. Nên vào thẳng kết quả, số liệu, mốc thời gian. Tránh vòng vo.</p></div>
+        <div class="disc-card disc-I"><span class="disc-tag">I &middot; Influence</span><p>Nói nhiều, thích chia sẻ, dễ hào hứng. Nên kể chuyện, dùng ví dụ sinh động. Tránh số liệu khô khan ngay từ đầu.</p></div>
+        <div class="disc-card disc-S"><span class="disc-tag">S &middot; Steadiness</span><p>Nói chậm, thận trọng, hay hỏi lại. Nên trấn an, đi từng bước. Tránh tạo áp lực chốt nhanh.</p></div>
+        <div class="disc-card disc-C"><span class="disc-tag">C &middot; Compliance</span><p>Hỏi chi tiết, muốn xem số liệu/case study. Nên chuẩn bị sẵn bằng chứng cụ thể. Tránh nói chung chung.</p></div>
+      </div>
+      <p class="hint">DISC là công cụ dự đoán ban đầu, không phải kết luận tuyệt đối — luôn quan sát phản ứng thật trong 30 giây đầu.</p>
+
+      <div class="footer-nav"><span></span><button data-next="level">Tiếp: Level &amp; Vai trò DM →</button></div>
+    </section>
+
+    <section class="panel" id="panel-level" data-title="Level &amp; Vai trò DM">
+      <div class="panel-eyebrow">Phần 1.4</div>
+      <h1>Level &amp; Vai trò của Decision Maker</h1>
+      <p class="panel-sub">DISC cho biết nói như thế nào. Level cho biết nói sâu tới đâu và đánh vào mối quan tâm nào.</p>
+
+      <p>Một CEO, một Director, một Manager và một Executive trong cùng một công ty quan tâm đến những điều hoàn toàn khác nhau khi nghe về cùng một giải pháp. BD cần xác định rõ 4 cấp bậc dưới đây, thay vì chỉ dừng ở &ldquo;C-level hay không&rdquo;.</p>
+
+      <table>
+        <thead><tr><th>Level</th><th>Mối quan tâm chính</th><th>Vai trò thường gặp</th><th>Cách approach</th><th>Đánh vào (hook)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>C-level</b><br>(CEO/CMO/CFO/COO)</td>
+            <td>Tăng trưởng doanh thu, ROI tổng thể, vị thế cạnh tranh, rủi ro thương hiệu/vận hành, hiệu quả đầu tư dài hạn.</td>
+            <td>Decision Maker cuối cùng cho deal lớn (Big Bet/Enterprise); hoặc Influencer cấp cao phê duyệt ngân sách.</td>
+            <td>Đi thẳng vào business impact, không sa vào chi tiết vận hành. Agenda ngắn gọn. Dùng ngôn ngữ tài chính: ROI, growth, risk.</td>
+            <td>Kết quả kinh doanh cụ thể và rủi ro nếu không hành động — benchmark ngành, competitive risk.</td>
+          </tr>
+          <tr>
+            <td><b>Director / Trưởng phòng</b></td>
+            <td>KPI phòng ban, ngân sách được giao, chọn đúng đối tác để không ảnh hưởng uy tín cá nhân, hiệu quả so với kế hoạch năm.</td>
+            <td>Decision Maker cho deal tầm trung; người trình phương án lên C-level cho deal lớn (Influencer mạnh nhất).</td>
+            <td>Cân bằng chiến lược và thực thi — cho thấy cả bức tranh lớn lẫn cách triển khai cụ thể. Chuẩn bị tài liệu để họ trình bày lên cấp trên.</td>
+            <td>Giúp họ trông tốt trước Ban lãnh đạo — số liệu rõ ràng, dễ báo cáo, giảm rủi ro vận hành.</td>
+          </tr>
+          <tr>
+            <td><b>Manager</b></td>
+            <td>Chất lượng thực thi chiến dịch, tiến độ, hiệu suất so với target được giao, quản lý ngân sách trong phạm vi cho phép.</td>
+            <td>Influencer mạnh (đề xuất lên Director); đôi khi là Decision Maker cho ngân sách nhỏ/vừa (SME, Small Bet).</td>
+            <td>Thể hiện quy trình rõ ràng, cam kết SLA, dễ phối hợp hàng ngày. Luôn giữ Manager trong vòng lặp thông tin.</td>
+            <td>Giúp họ đạt KPI cá nhân, giảm việc thủ công, có sẵn báo cáo để trình lên cấp trên.</td>
+          </tr>
+          <tr>
+            <td><b>Executive / Specialist</b></td>
+            <td>Công việc vận hành hàng ngày, dễ sử dụng dịch vụ, được hỗ trợ nhanh, không tạo thêm việc cho họ.</td>
+            <td>User (trực tiếp dùng dịch vụ) hoặc Gatekeeper (điểm chạm đầu tiên, có thể chặn hoặc mở đường tiếp cận cấp trên).</td>
+            <td>Thân thiện, tôn trọng, không đánh giá thấp vai trò dù họ không quyết định cuối. Cung cấp tài liệu ngắn gọn, dễ chuyển tiếp.</td>
+            <td>Sự hỗ trợ tận tình, đơn giản hoá công việc, cảm giác được tôn trọng — thường là người gác cổng quan trọng nhất.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Vai trò trong quyết định (Decision Maker Mapping)</h3>
+      <p>Ngoài Level, mỗi người liên hệ còn giữ một vai trò trong quy trình quyết định — xác định đúng vai trò giúp BD biết nên thuyết phục ai trước:</p>
+      <ul>
+        <li><b>Decision Maker</b> — người ra quyết định cuối cùng.</li>
+        <li><b>Influencer</b> — người có ảnh hưởng đến quyết định, thường trình bày/đề xuất lên Decision Maker.</li>
+        <li><b>User</b> — người trực tiếp sử dụng dịch vụ hàng ngày.</li>
+        <li><b>Gatekeeper</b> — người kiểm soát hoặc hỗ trợ quy trình tiếp cận, thường là điểm chạm đầu tiên.</li>
+      </ul>
+      <p>Thứ tự thuyết phục thường đi từ Gatekeeper/User (thường là Executive) &rarr; Influencer (thường là Manager/Director) &rarr; Decision Maker (thường là Director/C-level tuỳ quy mô deal).</p>
+
+      <h3>Gợi ý Level thường quyết định theo quy mô deal</h3>
+      <table>
+        <thead><tr><th>Quy mô deal</th><th>Level thường là Decision Maker</th><th>Level thường là Influencer/Gatekeeper</th></tr></thead>
+        <tbody>
+          <tr><td>Small Bet (SME, ngân sách nhỏ)</td><td>Manager, đôi khi Director</td><td>Executive</td></tr>
+          <tr><td>Medium Bet</td><td>Director</td><td>Manager, Executive</td></tr>
+          <tr><td>Big Bet / Enterprise</td><td>C-level</td><td>Director, Manager</td></tr>
+        </tbody>
+      </table>
+      <p class="hint">Heuristic để ưu tiên đúng người ngay từ đầu — vẫn cần xác nhận qua Discovery ai thực sự là Decision Maker trong từng trường hợp.</p>
+
+      <div class="footer-nav"><button data-next="framework">← Lý thuyết Framework</button><button data-next="prep">Tiếp: Chuẩn bị trước Call →</button></div>
+    </section>
+
+    <section class="panel" id="panel-prep" data-title="Chuẩn bị trước Call">
+      <div class="panel-eyebrow">Phần 2</div>
+      <h1>Chuẩn bị trước khi Call</h1>
+      <p class="panel-sub">Checklist theo 5 biến số, thay vì research dàn trải</p>
+
+      <table>
+        <thead><tr><th>Biến số</th><th>Việc cần làm trước khi call</th></tr></thead>
+        <tbody>
+          <tr><td><b>Product</b></td><td>Liệt kê 1&ndash;2 sản phẩm phù hợp nhất dựa trên ngành, quy mô, tín hiệu thị trường.</td></tr>
+          <tr><td><b>DM</b></td><td>Research chức danh, KPI, vai trò trong quyết định, buying stage, pain có khả năng gặp.</td></tr>
+          <tr><td><b>3 USP</b></td><td>Chọn trước 3 USP sẽ dùng cho cuộc gọi này &mdash; không cần học thuộc toàn bộ.</td></tr>
+          <tr><td><b>ROI</b></td><td>Chuẩn bị sẵn 1&ndash;2 con số benchmark ngành hoặc case study liên quan.</td></tr>
+          <tr><td><b>DISC</b></td><td>Dự đoán phong cách dựa trên chức danh và cách khách phản hồi email/tin nhắn trước đó.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Gợi ý DISC theo chức danh thường gặp</h3>
+      <table>
+        <thead><tr><th>Nhóm chức danh</th><th>Phong cách DISC thường gặp</th></tr></thead>
+        <tbody>
+          <tr><td>Founder / CEO</td><td>D hoặc I &mdash; quyết đoán hoặc thích câu chuyện lớn, tầm nhìn</td></tr>
+          <tr><td>CMO / Brand Manager</td><td>I hoặc C &mdash; quan tâm câu chuyện thương hiệu nhưng vẫn cần bằng chứng</td></tr>
+          <tr><td>CFO / Procurement</td><td>C &mdash; cần số liệu, logic, ROI rõ ràng</td></tr>
+          <tr><td>COO / Operations Manager</td><td>C hoặc S &mdash; cần quy trình rõ ràng, ít xáo trộn</td></tr>
+          <tr><td>Admin / Marketing Executive</td><td>S &mdash; thận trọng, cần được trấn an, ít quyền quyết định cuối</td></tr>
+        </tbody>
+      </table>
+      <p class="hint">Đây là heuristic ban đầu, không phải quy tắc cố định.</p>
+
+      <h3>O.C.A.L.L — checklist ngay trước &amp; trong lúc gọi</h3>
+      <p>Từ Internal Sales Workshop &ldquo;Building a Call Culture&rdquo; (23/07/2026) — dùng như checklist thao tác cụ thể, đi cùng 5 biến số ở lớp nội dung.</p>
+      <table>
+        <thead><tr><th>Bước</th><th>Nội dung</th></tr></thead>
+        <tbody>
+          <tr><td><b>Outcome</b></td><td>Xác định rõ mục tiêu cuộc gọi trước khi gọi. Không gọi để giới thiệu PMAX — gọi để khách thực hiện một hành động cụ thể: đồng ý meeting, một cuộc trao đổi ngắn, kết nối Zalo, hoặc xác nhận thời gian follow-up.</td></tr>
+          <tr><td><b>Context</b></td><td>Research khách trước khi gọi: industry, marketing activities, campaign đang triển khai, đối thủ, touchpoint trước đó. Nguồn: Google Ads Library, Facebook Ads Library. LinkedIn chỉ nên dùng để tham khảo.</td></tr>
+          <tr><td><b>Approach</b></td><td>Chuẩn bị lý do gọi, giá trị mang lại, cách xin phép khách dành khoảng 30 giây. Nếu khách đang bận: xin lịch gọi lại, hoặc xin phép kết nối Zalo.</td></tr>
+          <tr><td><b>Lead</b></td><td>Kết thúc cuộc gọi bằng một next step cụ thể. Không để cuộc gọi kết thúc mà không có hành động tiếp theo.</td></tr>
+          <tr><td><b>Learn</b></td><td>Ngay sau cuộc gọi: ghi lại insight, objection, update CRM, và follow-up đúng cam kết đã hẹn.</td></tr>
+        </tbody>
+      </table>
+      <p class="hint">Outcome + Context ứng với Pre-call Preparation; Approach là nơi áp dụng Level + DISC; Lead là Book Meeting; Learn nuôi dữ liệu cho Discovery lần sau.</p>
+
+      <h3>3 tình huống BD hay gặp khó khăn nhất</h3>
+      <ul>
+        <li><b>Cold prospecting</b> — không bán ngay, mục tiêu là tạo được một bước tiến tiếp theo.</li>
+        <li><b>Follow-up sau email chưa có phản hồi</b> — nếu khách sắp triển khai campaign, chủ động gọi thay vì tiếp tục chờ.</li>
+        <li><b>Follow-up sau proposal</b> khi khách đang xin phê duyệt nội bộ — tiếp tục follow-up, làm rõ tiêu chí đánh giá, chuyển cuộc trao đổi từ giá sang giá trị.</li>
+      </ul>
+
+      <div class="footer-nav"><button data-next="level">← Level &amp; Vai trò DM</button><button data-next="ai-skill">Tiếp: Cài AI Skill →</button></div>
+    </section>
+
+    <section class="panel" id="panel-ai-skill" data-title="Cài AI Skill">
+      <div class="panel-eyebrow">Phần 3</div>
+      <h1>Cài AI Skill &mdash; tự viết script không cần training</h1>
+      <p class="panel-sub">Cài 1 lần, dùng mãi mãi. Không cần đọc thuộc framework.</p>
+
+      <div class="callout"><strong>Tệp đi kèm:</strong> <code>pmax-sales-call-script.zip</code> &mdash; đây là một Claude Skill đã đóng gói sẵn toàn bộ dữ liệu 9 sản phẩm, DM, USP, ROI và DISC ở trang này. Sau khi cài, chỉ cần <em>nhắn chuyện bình thường</em> với Claude, không cần nhớ hay gõ lại framework.</div>
+
+      <h3>Cách cài trên claude.ai (không cần kỹ thuật)</h3>
+      <ol class="steps">
+        <li>Mở claude.ai &rarr; vào <b>Settings &rarr; Capabilities/Skills</b>.</li>
+        <li>Bấm <b>Upload skill</b> và chọn file <code>pmax-sales-call-script.zip</code>.</li>
+        <li>Xong &mdash; skill sẽ tự động áp dụng mỗi khi bạn nhờ Claude viết script call.</li>
+      </ol>
+
+      <h3>Cách dùng sau khi cài</h3>
+      <p>Chỉ cần nhắn tự nhiên, ví dụ:</p>
+      <div class="prompt-box" id="prompt-example"><button class="copy-btn" data-copy-target="prompt-example-text">Copy</button><span id="prompt-example-text">Viết script call cho khách ngành Real Estate, sản phẩm Media, chức danh Marketing Manager, khách nói chuyện chậm và hay hỏi lại nhiều lần.</span></div>
+
+      <h3>Prompt dự phòng (nếu chưa cài skill, hoặc dùng công cụ AI khác)</h3>
+      <p>Dán prompt này vào Claude hoặc công cụ AI khác, kèm theo dữ liệu sản phẩm ở các tab bên trái:</p>
+      <div class="prompt-box" id="prompt-full"><button class="copy-btn" data-copy-target="prompt-full-text">Copy</button><span id="prompt-full-text">Bạn là chuyên gia BD của PMAX. Hãy viết một script sales call theo cấu trúc: Opening (Trigger + Permission) → Discovery (3–5 câu hỏi) → Pain Confirmation → Solution Story (gắn với 3 USP + ROI) → điều chỉnh giọng điệu theo phong cách DISC → Book Meeting.
+
+Thông tin đầu vào:
+- Product: [tên sản phẩm PMAX]
+- Decision Maker: [chức danh, KPI đang phụ trách, pain có khả năng gặp]
+- 3 USP: [liệt kê 3 USP cụ thể của sản phẩm — xem tab sản phẩm bên trái]
+- ROI: [số liệu/benchmark cụ thể — xem tab sản phẩm bên trái]
+- DISC style: [D/I/S/C — mô tả ngắn phong cách của khách]
+- Bối cảnh khách hàng: [ngành, quy mô, tín hiệu trigger gần đây]
+
+Yêu cầu: văn phong tiếng Việt tự nhiên, chuyên nghiệp; không quá 3 USP; luôn kết ở một next step cụ thể; D/I ngắn gọn trực tiếp, S/C rõ ràng từ tốn có bằng chứng.</span></div>
+
+      <div class="footer-nav"><button data-next="prep">← Chuẩn bị trước Call</button><button data-next="influencer">Tiếp: Thư viện Script →</button></div>
+    </section>
+
+    
+  <section class="panel" id="panel-influencer" data-title="01 · Influencer">
+    <div class="panel-eyebrow">Thư viện Script &middot; 01/09</div>
+    <h1>Influencer</h1>
+    <p class="panel-sub">KOL / KOC / Brand Ambassador</p>
+    
+    <h3>Khi nào dùng (Pain Fit)</h3>
+    <p>Awareness thấp, cần social proof nhanh, ra mắt sản phẩm mới cần seeding, muốn viral nhưng ngại rủi ro chọn sai KOL.</p>
+    <h3>DM thường gặp</h3>
+    <table class="dm-table"><thead><tr><th>Chức danh</th><th>KPI / mối quan tâm chính</th></tr></thead><tbody><tr><td>Brand Manager / Marketing Manager</td><td>KPI reach, engagement, brand lift</td></tr><tr><td>Founder/CEO (SME)</td><td>muốn kết quả nhanh, ngại chi tiền mà không đo được hiệu quả</td></tr><tr><td>CMO (Enterprise)</td><td>cần influencer nằm trong chiến lược tổng thể, không muốn chạy rời rạc</td></tr></tbody></table>
+    <h3>3 USP</h3>
+    <ol class="usp-list"><li>Mạng lưới KOL/KOC đa tier (Celeb Tier 1 đến Community seeding) — chọn đúng người, đúng ngân sách.</li><li>Quy trình booking có kiểm soát chất lượng nội dung, đúng thông điệp thương hiệu, giảm rủi ro scandal.</li><li>Đo lường hiệu quả gắn với business goal, không chỉ đếm view mà đo brand lift/lead thực tế.</li></ol>
+    <h3>ROI Angle</h3>
+    <p>Dealsize theo tier khoảng 50M (Community seeding) đến 600M–1B (Tier 1/Brand Ambassador). Nói theo cost-per-qualified-engagement so với chi phí và rủi ro nếu team tự research, tự chọn KOL.</p>
+    <h3>Script mẫu theo DISC <span class="hint">(mở đầu / chốt giá trị)</span></h3>
+    <div class="disc-grid">
+    <div class="disc-card disc-D">
+      <span class="disc-tag">D · Dominance</span>
+      <p>&ldquo;Anh/chị cần kết quả nhanh và đo được. PMAX có sẵn network KOL đã qua sàng lọc, book được trong 3–5 ngày, và cam kết KPI reach/engagement rõ ràng trước khi ký.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-I">
+      <span class="disc-tag">I · Influence</span>
+      <p>&ldquo;Em thấy campaign gần đây bên mình rất thú vị! Nếu kết hợp thêm KOL đúng gu, câu chuyện thương hiệu sẽ lan tỏa mạnh hơn — mình trao đổi nhanh ý tưởng được không ạ?&rdquo;</p>
+    </div>
+    <div class="disc-card disc-S">
+      <span class="disc-tag">S · Steadiness</span>
+      <p>&ldquo;Em hiểu chọn KOL rủi ro vì sợ sai người hoặc scandal. PMAX có quy trình kiểm soát nội dung và hợp đồng rõ ràng, giảm rủi ro cho team mình rất nhiều.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-C">
+      <span class="disc-tag">C · Compliance</span>
+      <p>&ldquo;Bên em có dữ liệu hiệu quả theo từng tier KOL, từ reach, engagement rate đến chi phí trên mỗi tương tác — em gửi báo cáo benchmark ngành để anh/chị đối chiếu trước khi quyết định.&rdquo;</p>
+    </div></div>
+  </section>
+
+  <section class="panel" id="panel-creative" data-title="02 · Creative">
+    <div class="panel-eyebrow">Thư viện Script &middot; 02/09</div>
+    <h1>Creative</h1>
+    <p class="panel-sub">Concept &amp; Production</p>
+    
+    <h3>Khi nào dùng (Pain Fit)</h3>
+    <p>Thiếu ý tưởng sáng tạo, chiến dịch launch cần concept mạnh, cần production (TVC/KV/Video) chuyên nghiệp.</p>
+    <h3>DM thường gặp</h3>
+    <table class="dm-table"><thead><tr><th>Chức danh</th><th>KPI / mối quan tâm chính</th></tr></thead><tbody><tr><td>Brand Manager</td><td>KPI chất lượng &amp; tiến độ output creative</td></tr><tr><td>Marketing Director / CMO</td><td>KPI hiệu quả tổng thể chiến dịch, tính nhất quán thông điệp</td></tr></tbody></table>
+    <h3>3 USP</h3>
+    <ol class="usp-list"><li>Đội ngũ concept có kinh nghiệm IMC — không chỉ làm đẹp mà gắn với chiến lược kinh doanh.</li><li>Production đa dạng: video, AI production, social content — linh hoạt theo ngân sách.</li><li>Có thể đi kèm hoặc độc lập với Media, giúp thông điệp nhất quán từ ý tưởng đến thực thi.</li></ol>
+    <h3>ROI Angle</h3>
+    <p>Dealsize từ khoảng 30M (mini concept) đến 700M (IMC concept partner). Nói theo chi phí cơ hội của một chiến dịch launch thất bại vì concept yếu, so với chi phí đầu tư một concept mạnh ngay từ đầu.</p>
+    <h3>Script mẫu theo DISC <span class="hint">(mở đầu / chốt giá trị)</span></h3>
+    <div class="disc-grid">
+    <div class="disc-card disc-D">
+      <span class="disc-tag">D · Dominance</span>
+      <p>&ldquo;Concept mạnh giúp campaign launch nhanh và tạo impact ngay — tụi em có thể trình concept đầu tiên trong 1 tuần.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-I">
+      <span class="disc-tag">I · Influence</span>
+      <p>&ldquo;Ý tưởng sáng tạo là thứ giúp thương hiệu được nhớ tới — team Creative PMAX rất thích thử những concept táo bạo, phù hợp câu chuyện bên mình.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-S">
+      <span class="disc-tag">S · Steadiness</span>
+      <p>&ldquo;Tụi em làm việc theo quy trình rõ ràng: concept → feedback → chỉnh sửa → final, để anh/chị luôn kiểm soát được tiến độ, không bị bất ngờ.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-C">
+      <span class="disc-tag">C · Compliance</span>
+      <p>&ldquo;PMAX có case study cho từng loại hình creative, kèm số liệu hiệu quả (engagement, view-through rate) để anh/chị tham khảo trước khi chọn hướng.&rdquo;</p>
+    </div></div>
+  </section>
+
+  <section class="panel" id="panel-strategy" data-title="03 · Strategy">
+    <div class="panel-eyebrow">Thư viện Script &middot; 03/09</div>
+    <h1>Strategy</h1>
+    <p class="panel-sub">Chiến lược &amp; Tư vấn</p>
+    
+    <h3>Khi nào dùng (Pain Fit)</h3>
+    <p>Marketing rời rạc, chưa có định vị rõ, cần chiến lược tổng thể trước khi triển khai chiến dịch, hoặc brand mới ra mắt/mở rộng thị trường.</p>
+    <h3>DM thường gặp</h3>
+    <table class="dm-table"><thead><tr><th>Chức danh</th><th>KPI / mối quan tâm chính</th></tr></thead><tbody><tr><td>CMO / VP Marketing</td><td>KPI định hướng chiến lược dài hạn</td></tr><tr><td>Founder/COO (đang mở rộng)</td><td>cần go-to-market strategy rõ ràng trước khi đầu tư</td></tr></tbody></table>
+    <h3>3 USP</h3>
+    <ol class="usp-list"><li>Đánh giá toàn diện (brand health check, market entry research) trước khi đề xuất giải pháp.</li><li>Kết nối chiến lược với thực thi: Strategy → Creative → Media → Influencer trong một hệ sinh thái.</li><li>Đội chuyên trách theo từng mảng: Brand strategy, GTM, Pricing, Marketing operation design.</li></ol>
+    <h3>ROI Angle</h3>
+    <p>Dealsize Strategy Consulting khoảng 50M–200M+. Nói theo chi phí cơ hội nếu triển khai sai chiến lược — chạy quảng cáo khi chưa định vị rõ thường đốt ngân sách nhiều hơn nhiều lần chi phí tư vấn.</p>
+    <h3>Script mẫu theo DISC <span class="hint">(mở đầu / chốt giá trị)</span></h3>
+    <div class="disc-grid">
+    <div class="disc-card disc-D">
+      <span class="disc-tag">D · Dominance</span>
+      <p>&ldquo;Trước khi rót ngân sách vào quảng cáo, mình cần một chiến lược rõ ràng để tránh đốt tiền sai hướng — PMAX có thể làm song song, không làm chậm tiến độ campaign.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-I">
+      <span class="disc-tag">I · Influence</span>
+      <p>&ldquo;Em rất tò mò về định hướng thương hiệu bên mình sắp tới — một buổi trao đổi chiến lược chắc chắn sẽ mở ra nhiều góc nhìn thú vị.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-S">
+      <span class="disc-tag">S · Steadiness</span>
+      <p>&ldquo;Team Strategy sẽ đi từng bước: audit hiện trạng, họp thống nhất định hướng, rồi mới đề xuất kế hoạch, để anh/chị luôn nắm rõ từng giai đoạn.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-C">
+      <span class="disc-tag">C · Compliance</span>
+      <p>&ldquo;Tụi em có framework đánh giá gồm brand health check, market entry research và marketing operation design — em có thể gửi cách đo brand health trước để anh/chị tham khảo.&rdquo;</p>
+    </div></div>
+  </section>
+
+  <section class="panel" id="panel-scanmax" data-title="04 · ScanMax">
+    <div class="panel-eyebrow">Thư viện Script &middot; 04/09</div>
+    <h1>ScanMax</h1>
+    <p class="panel-sub">Audit nhanh (giả định)</p>
+    <div class="callout callout-warn"><strong>Chưa xác nhận:</strong> Lưu ý: thông tin sản phẩm ScanMax chưa có trong tài liệu tham khảo được cung cấp. Nội dung trên là khung gợi ý — cần xác nhận lại chi tiết sản phẩm, dealsize và USP chính xác với team Product trước khi dùng script này với khách hàng thật.</div>
+    <h3>Khi nào dùng (Pain Fit)</h3>
+    <p>Giả định: công cụ chấm điểm/scan nhanh hiệu quả marketing hiện tại — dùng làm bước mở đầu (door-opener) trước khi đề xuất giải pháp lớn hơn.</p>
+    <h3>DM thường gặp</h3>
+    <table class="dm-table"><thead><tr><th>Chức danh</th><th>KPI / mối quan tâm chính</th></tr></thead><tbody><tr><td>Marketing Executive/Specialist</td><td>người vận hành hàng ngày, cần biết nhanh điểm nghẽn</td></tr><tr><td>Brand Manager</td><td>cần cơ sở dữ liệu để đề xuất ngân sách/giải pháp mới</td></tr></tbody></table>
+    <h3>3 USP</h3>
+    <ol class="usp-list"><li>Chấm điểm nhanh hiệu quả marketing hiện tại, không cần cam kết hợp đồng dài hạn.</li><li>Chỉ ra điểm nghẽn cụ thể (kênh, creative, targeting) làm cơ sở đề xuất giải pháp đúng.</li><li>Chi phí thấp, dễ được duyệt nội bộ — phù hợp làm bước đầu xây dựng lòng tin với khách mới.</li></ol>
+    <h3>ROI Angle</h3>
+    <p>Định vị như một audit nhẹ, chi phí thấp; ROI là tiết kiệm thời gian ra quyết định — biết ngay vấn đề nằm ở đâu thay vì đoán.</p>
+    <h3>Script mẫu theo DISC <span class="hint">(mở đầu / chốt giá trị)</span></h3>
+    <div class="disc-grid">
+    <div class="disc-card disc-D">
+      <span class="disc-tag">D · Dominance</span>
+      <p>&ldquo;Chỉ cần 15 phút, ScanMax sẽ chỉ ra ngay điểm marketing đang lãng phí ngân sách nhiều nhất.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-I">
+      <span class="disc-tag">I · Influence</span>
+      <p>&ldquo;ScanMax giống như một buổi khám sức khỏe nhanh cho marketing — nhẹ nhàng nhưng rất đáng để thử.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-S">
+      <span class="disc-tag">S · Steadiness</span>
+      <p>&ldquo;Không cần cam kết gì cả, mình có thể bắt đầu bằng một lần scan thử để xem có phù hợp không.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-C">
+      <span class="disc-tag">C · Compliance</span>
+      <p>&ldquo;ScanMax chấm điểm theo bộ tiêu chí cụ thể, có báo cáo chi tiết để anh/chị đối chiếu với hiện trạng.&rdquo;</p>
+    </div></div>
+  </section>
+
+  <section class="panel" id="panel-auditvista" data-title="05 · Audit Vista">
+    <div class="panel-eyebrow">Thư viện Script &middot; 05/09</div>
+    <h1>Audit Vista</h1>
+    <p class="panel-sub">Brand Compliance</p>
+    
+    <h3>Khi nào dùng (Pain Fit)</h3>
+    <p>Doanh nghiệp lớn cần kiểm soát compliance thương hiệu trên nhiều kênh/nhiều agency, lo ngại rủi ro sai lệch hình ảnh thương hiệu.</p>
+    <h3>DM thường gặp</h3>
+    <table class="dm-table"><thead><tr><th>Chức danh</th><th>KPI / mối quan tâm chính</th></tr></thead><tbody><tr><td>CMO / Brand Director</td><td>chịu trách nhiệm về tính nhất quán thương hiệu</td></tr><tr><td>COO (Enterprise)</td><td>quan tâm rủi ro vận hành và pháp lý liên quan thương hiệu</td></tr></tbody></table>
+    <h3>3 USP</h3>
+    <ol class="usp-list"><li>Giải pháp Lock-in/Moat — kiểm soát compliance thương hiệu tự động trên diện rộng, nhiều kênh, nhiều đối tác.</li><li>Dealsize lớn (khoảng 600M–15B), phù hợp doanh nghiệp có ngân sách marketing lớn, nhiều bên liên quan.</li><li>Giảm rủi ro hình ảnh thương hiệu/pháp lý do sai sót từ agency hoặc đối tác thứ ba.</li></ol>
+    <h3>ROI Angle</h3>
+    <p>Nói theo chi phí rủi ro: một khủng hoảng truyền thông do sai lệch thương hiệu thường tốn kém hơn nhiều lần chi phí đầu tư Audit Vista.</p>
+    <h3>Script mẫu theo DISC <span class="hint">(mở đầu / chốt giá trị)</span></h3>
+    <div class="disc-grid">
+    <div class="disc-card disc-D">
+      <span class="disc-tag">D · Dominance</span>
+      <p>&ldquo;Nếu một sai sót thương hiệu xảy ra trên diện rộng, chi phí xử lý khủng hoảng có thể gấp nhiều lần ngân sách Audit Vista. Tụi em demo nhanh cách hệ thống phát hiện sai lệch trong 15 phút.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-I">
+      <span class="disc-tag">I · Influence</span>
+      <p>&ldquo;Đây là công cụ giúp CMO yên tâm hơn vì luôn biết thương hiệu đang được thể hiện đúng trên mọi kênh.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-S">
+      <span class="disc-tag">S · Steadiness</span>
+      <p>&ldquo;Audit Vista triển khai theo từng giai đoạn, không xáo trộn vận hành hiện tại, có báo cáo định kỳ để anh/chị theo dõi.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-C">
+      <span class="disc-tag">C · Compliance</span>
+      <p>&ldquo;Tụi em có thể chia sẻ cách hệ thống chấm điểm compliance, tần suất quét, và case thực tế đã phát hiện sai lệch ở khách hàng cùng ngành.&rdquo;</p>
+    </div></div>
+  </section>
+
+  <section class="panel" id="panel-media" data-title="06 · Media">
+    <div class="panel-eyebrow">Thư viện Script &middot; 06/09</div>
+    <h1>Media</h1>
+    <p class="panel-sub">Quảng cáo đa kênh</p>
+    
+    <h3>Khi nào dùng (Pain Fit)</h3>
+    <p>Cần chạy quảng cáo hiệu quả (branding hoặc leadgen), CPL tăng, hoặc cần scale ngân sách lớn với chi phí minh bạch.</p>
+    <h3>DM thường gặp</h3>
+    <table class="dm-table"><thead><tr><th>Chức danh</th><th>KPI / mối quan tâm chính</th></tr></thead><tbody><tr><td>Marketing Executive / Digital Marketing Manager</td><td>KPI hiệu suất chạy ads hàng ngày</td></tr><tr><td>CMO</td><td>KPI tổng ngân sách và hiệu quả toàn kênh</td></tr></tbody></table>
+    <h3>3 USP</h3>
+    <ol class="usp-list"><li>Danh mục linh hoạt: Selfserve, Booking, Transparent cost hoặc Unit cost — phù hợp mọi quy mô ngân sách.</li><li>Kinh nghiệm đa ngành (FMCG, Real Estate, Finance, Health Care...) với benchmark riêng từng ngành.</li><li>Tích hợp được với Creative, Data (CFP/MMM) để tối ưu hiệu quả toàn phễu, không chỉ tối ưu quảng cáo đơn lẻ.</li></ol>
+    <h3>ROI Angle</h3>
+    <p>Nói theo % giảm CPL/CPA so với benchmark ngành, hoặc mức độ minh bạch chi phí giúp tối ưu ngân sách hiệu quả hơn.</p>
+    <h3>Script mẫu theo DISC <span class="hint">(mở đầu / chốt giá trị)</span></h3>
+    <div class="disc-grid">
+    <div class="disc-card disc-D">
+      <span class="disc-tag">D · Dominance</span>
+      <p>&ldquo;Nếu CPL đang tăng, tụi em có thể audit nhanh tài khoản hiện tại và chỉ ra ngay điểm đang lãng phí ngân sách.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-I">
+      <span class="disc-tag">I · Influence</span>
+      <p>&ldquo;Mỗi ngành hàng có một công thức chạy quảng cáo riêng, và tụi em rất thích tìm ra công thức phù hợp nhất cho từng brand.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-S">
+      <span class="disc-tag">S · Steadiness</span>
+      <p>&ldquo;Tụi em minh bạch từng đồng chi tiêu, có báo cáo định kỳ rõ ràng để team luôn nắm được ngân sách đang đi đâu.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-C">
+      <span class="disc-tag">C · Compliance</span>
+      <p>&ldquo;Em có thể gửi benchmark CPL/CPA theo ngành của bên mình để anh/chị đối chiếu với hiệu suất hiện tại trước khi quyết định.&rdquo;</p>
+    </div></div>
+  </section>
+
+  <section class="panel" id="panel-leadgen" data-title="07 · Leadgen">
+    <div class="panel-eyebrow">Thư viện Script &middot; 07/09</div>
+    <h1>Leadgen</h1>
+    <p class="panel-sub">Tối ưu phễu chuyển đổi</p>
+    
+    <h3>Khi nào dùng (Pain Fit)</h3>
+    <p>Thiếu lead, lead kém chất lượng, hoặc cần tối ưu toàn phễu từ targeting đến conversion.</p>
+    <h3>DM thường gặp</h3>
+    <table class="dm-table"><thead><tr><th>Chức danh</th><th>KPI / mối quan tâm chính</th></tr></thead><tbody><tr><td>Sales Manager / BD Manager</td><td>KPI số lượng &amp; chất lượng lead cho Sales</td></tr><tr><td>Marketing Manager / CMO</td><td>KPI hiệu quả chi phí trên mỗi lead hợp lệ</td></tr></tbody></table>
+    <h3>3 USP</h3>
+    <ol class="usp-list"><li>Tối ưu toàn phễu (Targeting → Creative → Landing page → Conversion), không chỉ chạy ads đơn lẻ.</li><li>Có Sale Analysis &amp; Planning đi kèm — phân tích chất lượng lead trước khi scale ngân sách.</li><li>Kinh nghiệm sâu ở ngành có funnel phức tạp (Finance, Education) với unit cost minh bạch.</li></ol>
+    <h3>ROI Angle</h3>
+    <p>Nói theo mức giảm Cost per Qualified Lead, hoặc số lead/tháng cần thiết để Sales đạt target doanh số — PMAX giúp đạt volume ổn định hơn.</p>
+    <h3>Script mẫu theo DISC <span class="hint">(mở đầu / chốt giá trị)</span></h3>
+    <div class="disc-grid">
+    <div class="disc-card disc-D">
+      <span class="disc-tag">D · Dominance</span>
+      <p>&ldquo;Nếu Sales đang thiếu lead để đạt target tháng này, tụi em có thể review funnel và đề xuất hướng tăng volume trong 1 tuần.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-I">
+      <span class="disc-tag">I · Influence</span>
+      <p>&ldquo;Leadgen hiệu quả không chỉ là chạy ads, mà là kể đúng câu chuyện để khách chủ động để lại thông tin — đó là phần tụi em rất thích làm.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-S">
+      <span class="disc-tag">S · Steadiness</span>
+      <p>&ldquo;Tụi em sẽ cùng Sales team review chất lượng lead định kỳ, điều chỉnh dần để không xáo trộn quy trình hiện tại.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-C">
+      <span class="disc-tag">C · Compliance</span>
+      <p>&ldquo;Em có thể chia sẻ số liệu cost-per-qualified-lead theo ngành để anh/chị so sánh với chi phí hiện tại.&rdquo;</p>
+    </div></div>
+  </section>
+
+  <section class="panel" id="panel-branding" data-title="08 · Branding">
+    <div class="panel-eyebrow">Thư viện Script &middot; 08/09</div>
+    <h1>Branding</h1>
+    <p class="panel-sub">IMC trọn gói</p>
+    
+    <h3>Khi nào dùng (Pain Fit)</h3>
+    <p>Awareness thấp, cần định vị lại thương hiệu, hoặc cần chiến dịch IMC tổng thể (Launch, Reposition, Brandformance).</p>
+    <h3>DM thường gặp</h3>
+    <table class="dm-table"><thead><tr><th>Chức danh</th><th>KPI / mối quan tâm chính</th></tr></thead><tbody><tr><td>CMO / Marketing Director</td><td>KPI awareness, brand health, tính nhất quán thông điệp</td></tr><tr><td>Brand Manager</td><td>KPI chất lượng thực thi từng chiến dịch</td></tr></tbody></table>
+    <h3>3 USP</h3>
+    <ol class="usp-list"><li>Giải pháp IMC trọn gói: Strategy + Creative + Media + KOL + PR + Event, đồng bộ một thông điệp.</li><li>Nhiều gói theo ngân sách (Lite đến Premium), linh hoạt scale theo giai đoạn phát triển thương hiệu.</li><li>Case study đa ngành, đặc biệt mạnh ở FMCG, Health Care, Real Estate.</li></ol>
+    <h3>ROI Angle</h3>
+    <p>Nói theo mức tăng brand lift/awareness, hoặc so với chi phí thuê nhiều agency lẻ cho từng hạng mục — PMAX gộp lại giúp tiết kiệm chi phí quản lý và đảm bảo nhất quán thông điệp.</p>
+    <h3>Script mẫu theo DISC <span class="hint">(mở đầu / chốt giá trị)</span></h3>
+    <div class="disc-grid">
+    <div class="disc-card disc-D">
+      <span class="disc-tag">D · Dominance</span>
+      <p>&ldquo;Nếu đang cần ra mắt hoặc tái định vị thương hiệu, tụi em có gói IMC trọn gói để tránh mất thời gian làm việc với nhiều agency lẻ.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-I">
+      <span class="disc-tag">I · Influence</span>
+      <p>&ldquo;Một chiến dịch IMC tốt là khi mọi kênh đều kể chung một câu chuyện — đó là điều tụi em muốn giúp bên mình đạt được.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-S">
+      <span class="disc-tag">S · Steadiness</span>
+      <p>&ldquo;Gói Branding có nhiều mức từ Lite đến Premium, tụi em sẽ đề xuất mức phù hợp với ngân sách và giai đoạn hiện tại, không ép scale quá nhanh.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-C">
+      <span class="disc-tag">C · Compliance</span>
+      <p>&ldquo;Em có thể gửi case study IMC cùng ngành để anh/chị tham khảo kết quả brand lift thực tế trước khi quyết định.&rdquo;</p>
+    </div></div>
+  </section>
+
+  <section class="panel" id="panel-mmm" data-title="09 · MMM">
+    <div class="panel-eyebrow">Thư viện Script &middot; 09/09</div>
+    <h1>MMM</h1>
+    <p class="panel-sub">Marketing Mix Modeling</p>
+    
+    <h3>Khi nào dùng (Pain Fit)</h3>
+    <p>Doanh nghiệp lớn, ngân sách marketing cao, cần đo lường hiệu quả phân bổ ngân sách giữa các kênh (online/offline), khó biện minh ROI marketing với Ban lãnh đạo/Tài chính.</p>
+    <h3>DM thường gặp</h3>
+    <table class="dm-table"><thead><tr><th>Chức danh</th><th>KPI / mối quan tâm chính</th></tr></thead><tbody><tr><td>CMO / Marketing Director</td><td>cần chứng minh hiệu quả marketing bằng số liệu</td></tr><tr><td>CFO</td><td>cần ngôn ngữ tài chính (ROI, incrementality) để duyệt ngân sách</td></tr></tbody></table>
+    <h3>3 USP</h3>
+    <ol class="usp-list"><li>Đo lường đóng góp thực tế của từng kênh vào doanh thu, kể cả offline — dữ liệu khách quan, không phụ thuộc báo cáo của platform.</li><li>Nhiều gói: Full (kèm Strategy), Lite, Mini, Analytics Only — phù hợp cả doanh nghiệp mới bắt đầu đo MMM.</li><li>Giúp CMO 'nói chuyện' hiệu quả hơn với CFO/Board bằng ngôn ngữ tài chính.</li></ol>
+    <h3>ROI Angle</h3>
+    <p>Dealsize khoảng 30M–800M tùy gói. Mỗi phần trăm tối ưu phân bổ ngân sách trên tổng ngân sách marketing (thường hàng chục tỷ/năm ở doanh nghiệp lớn) có thể tiết kiệm nhiều hơn gấp nhiều lần chi phí MMM.</p>
+    <h3>Script mẫu theo DISC <span class="hint">(mở đầu / chốt giá trị)</span></h3>
+    <div class="disc-grid">
+    <div class="disc-card disc-D">
+      <span class="disc-tag">D · Dominance</span>
+      <p>&ldquo;MMM cho anh/chị con số cụ thể: kênh nào đang mang lại doanh thu thực sự, để tái phân bổ ngân sách ngay trong quý tới.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-I">
+      <span class="disc-tag">I · Influence</span>
+      <p>&ldquo;Đây là công cụ giúp kể câu chuyện hiệu quả marketing bằng số liệu thuyết phục hơn rất nhiều khi trình bày với Ban lãnh đạo.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-S">
+      <span class="disc-tag">S · Steadiness</span>
+      <p>&ldquo;Tụi em có thể bắt đầu với gói Mini hoặc Analytics Only để team làm quen trước, không cần cam kết ngay gói Full.&rdquo;</p>
+    </div>
+    <div class="disc-card disc-C">
+      <span class="disc-tag">C · Compliance</span>
+      <p>&ldquo;Em có thể chia sẻ phương pháp luận MMM và ví dụ cách tính incrementality để anh/chị đánh giá độ tin cậy trước khi triển khai.&rdquo;</p>
+    </div></div>
+  </section>
+
+    <section class="panel" id="panel-full-scripts" data-title="Script mẫu đầy đủ">
+      <div class="panel-eyebrow">Phần 5</div>
+      <h1>Script mẫu đầy đủ cho một cuộc gọi</h1>
+      <p class="panel-sub">4 ví dụ hoàn chỉnh từ Mở đầu đến Chốt next step</p>
+      <p>Khi viết script thật cho một khách cụ thể, giữ cấu trúc và nhịp câu này nhưng thay bối cảnh/tên/con số cho đúng thực tế của khách đó.</p>
+      <div class="script-card">
+    <div class="script-card-head"><h3 class="script-title">Script 1 — Cold Prospecting</h3><span class="script-tag">Media × Manager × DISC D</span></div>
+    <p class="script-context"><b>Bối cảnh:</b> Gọi cho Digital Marketing Manager ngành Real Estate. Research thấy creative quảng cáo bị đổi liên tục trong 2 tuần — dấu hiệu CPL có thể đang chưa ổn định. Outcome mong muốn: đặt được 1 buổi trao đổi 15 phút.</p>
+    <div class="script-step"><span class="script-step-label">Mở đầu</span><p>Dạ chào anh Minh, em là Lan bên PMAX ạ. Em xin phép anh 30 giây được không ạ? Dạ em có theo dõi thấy bên mình đang chạy khá nhiều campaign quảng cáo dự án X gần đây, và em thấy creative được thay đổi liên tục trong 2 tuần qua — em đoán có thể CPL đang chưa ổn định như kỳ vọng. Bên em đang hỗ trợ một vài chủ đầu tư trong ngành tối ưu lại phần này nên em muốn trao đổi nhanh xem có phù hợp với tình hình bên mình không ạ.</p></div><div class="script-step"><span class="script-step-label">Khám phá</span><ul><li>Hiện tại CPL trung bình bên mình đang dao động khoảng bao nhiêu ạ?</li><li>Ngân sách media hiện đang chia cho bao nhiêu kênh ạ?</li><li>Đội ngũ đang tự vận hành hay có agency hỗ trợ ạ?</li><li>Mục tiêu CPL bên mình đang nhắm tới là bao nhiêu ạ?</li></ul></div><div class="script-step"><span class="script-step-label">Xác nhận Pain</span><p>Vậy nếu em hiểu đúng, vấn đề lớn nhất hiện tại là CPL đang cao hơn target và team đang phải liên tục đổi creative để thử nghiệm, đúng không ạ?</p></div><div class="script-step"><span class="script-step-label">Solution Story (D)</span><p>Dạ đúng rồi ạ. Bên em có 3 điểm có thể giúp bên mình ngay: Một, tụi em có nhiều hình thức chạy linh hoạt — selfserve, booking, transparent cost — nên tối ưu được chi phí theo đúng ngân sách hiện tại. Hai, tụi em có benchmark CPL riêng cho ngành Real Estate nên biết ngay đang lệch ở đâu. Ba, tụi em tích hợp được với Creative và Data để tối ưu toàn phễu chứ không chỉ tối ưu quảng cáo đơn lẻ. Nếu audit nhanh tài khoản hiện tại, tụi em có thể chỉ ra ngay điểm đang lãng phí ngân sách trong vòng vài ngày.</p></div><div class="script-step"><span class="script-step-label">Chốt next step</span><p>Anh Minh thấy vậy có ổn không ạ? Nếu được, em xin phép sắp xếp một buổi 15 phút vào thứ Ba hoặc thứ Năm tuần này để tụi em xem qua tài khoản hiện tại và chia sẻ hướng tối ưu cụ thể hơn được không ạ?</p></div>
+  </div>
+<div class="script-card">
+    <div class="script-card-head"><h3 class="script-title">Script 2 — Follow-up sau Email chưa phản hồi</h3><span class="script-tag">Branding × Director/C-level × DISC I</span></div>
+    <p class="script-context"><b>Bối cảnh:</b> Đã gửi email giới thiệu PMAX kèm case study branding 3 ngày trước, khách đã mở email 2 lần nhưng chưa phản hồi. Trigger: công ty chuẩn bị ra mắt dự án mới.</p>
+    <div class="script-step"><span class="script-step-label">Mở đầu</span><p>Dạ chào chị Hương, em là Mai bên PMAX ạ, không biết chị có nhớ email em gửi hôm thứ Hai về case study branding tụi em làm cho ngành tương tự không ạ? Em thấy bên mình sắp ra mắt dự án mới nên em gọi luôn để trao đổi nhanh, mong chị dành cho em ít phút được không ạ?</p></div><div class="script-step"><span class="script-step-label">Khám phá</span><ul><li>Dự án sắp ra mắt bên mình đang định hướng câu chuyện thương hiệu như thế nào ạ?</li><li>Phần communication cho đợt ra mắt này team mình tự làm hay đang tìm thêm đối tác ạ?</li><li>Ngoài truyền thông ra mắt, năm nay bên mình có ưu tiên nào khác về xây dựng thương hiệu không ạ?</li></ul></div><div class="script-step"><span class="script-step-label">Xác nhận Pain</span><p>Dạ vậy nghĩa là bên mình đang cần một câu chuyện thương hiệu đủ mạnh và nhất quán trên nhiều kênh cho đợt ra mắt này, và hiện vẫn đang cân nhắc nguồn lực để làm đúng không ạ?</p></div><div class="script-step"><span class="script-step-label">Solution Story (I)</span><p>Dạ, thật ra đây đúng là giai đoạn tụi em thích làm việc nhất luôn chị, vì lúc ra mắt là lúc câu chuyện thương hiệu có sức ảnh hưởng lớn nhất. Bên em có gói IMC trọn gói — từ Strategy, Creative, Media, đến KOL và PR — nên toàn bộ chiến dịch ra mắt sẽ kể chung một câu chuyện, không bị rời rạc giữa các kênh. Case study gần đây tụi em làm cho một dự án tương tự, brand lift tăng đáng kể chỉ trong giai đoạn ra mắt. Và vì gói có nhiều mức từ Lite đến Premium nên linh hoạt theo ngân sách hiện tại của bên mình nữa.</p></div><div class="script-step"><span class="script-step-label">Chốt next step</span><p>Em nghĩ nếu mình trao đổi thêm 20–30 phút, em có thể chia sẻ rõ hơn ý tưởng áp dụng cho dự án lần này của chị luôn. Chị xem tuần này ngày nào tiện để mình đặt lịch được không ạ?</p></div>
+  </div>
+<div class="script-card">
+    <div class="script-card-head"><h3 class="script-title">Script 3 — Follow-up sau Proposal đang chờ duyệt nội bộ</h3><span class="script-tag">MMM × CFO/C-level × DISC C</span></div>
+    <p class="script-context"><b>Bối cảnh:</b> Đã gửi proposal MMM 1 tuần trước cho CMO, CMO đang trình lên CFO duyệt ngân sách. Gọi để hỗ trợ thêm thông tin giúp CFO ra quyết định.</p>
+    <div class="script-step"><span class="script-step-label">Mở đầu</span><p>Dạ chào anh Tuấn, em là Khoa bên PMAX ạ. Tuần trước bên em có gửi proposal MMM để chị Hà (CMO) trình nội bộ, em gọi để hỏi thăm xem quá trình đánh giá đang tới đâu, và xem có thông tin gì em có thể hỗ trợ thêm để anh dễ ra quyết định hơn không ạ.</p></div><div class="script-step"><span class="script-step-label">Khám phá</span><ul><li>Hiện tại phía anh đang đánh giá theo tiêu chí nào là chính ạ — chi phí, ROI dự kiến, hay rủi ro triển khai ạ?</li><li>Ngoài MMM, anh có đang so sánh với phương án nào khác không ạ?</li><li>Mốc thời gian dự kiến duyệt là khi nào để em chủ động follow-up đúng lúc ạ?</li></ul></div><div class="script-step"><span class="script-step-label">Xác nhận Pain</span><p>Dạ em hiểu, với CFO thì bài toán quan trọng nhất thường là con số MMM này giúp tối ưu được bao nhiêu trên tổng ngân sách marketing, đúng không ạ?</p></div><div class="script-step"><span class="script-step-label">Solution Story (C)</span><p>Dạ đúng vậy. MMM giúp đo lường chính xác đóng góp doanh thu của từng kênh kể cả offline, không phụ thuộc vào báo cáo của platform — đây là điểm CFO thường đánh giá cao vì tính khách quan. Bên em cũng có gói Mini hoặc Analytics Only nếu anh muốn team làm quen trước khi cam kết gói Full, giảm rủi ro đầu tư ban đầu. Về mặt con số, chỉ cần tối ưu một vài phần trăm phân bổ ngân sách trên tổng ngân sách marketing hàng năm, mức tiết kiệm thường lớn hơn nhiều lần chi phí triển khai MMM — em có thể gửi thêm tài liệu minh hoạ cách tính để anh tham khảo trước cuộc họp duyệt.</p></div><div class="script-step"><span class="script-step-label">Chốt next step</span><p>Anh thấy nếu em gửi thêm 1 trang tóm tắt số liệu để anh trình cùng proposal thì có giúp được không ạ? Và mình hẹn nhau follow-up lại sau buổi duyệt được không ạ, dự kiến khi nào ạ?</p></div>
+  </div>
+<div class="script-card">
+    <div class="script-card-head"><h3 class="script-title">Script 4 — Tiếp cận qua Gatekeeper/Executive</h3><span class="script-tag">Leadgen × Executive × DISC S</span></div>
+    <p class="script-context"><b>Bối cảnh:</b> Gọi vào công ty ngành Education, người nghe máy là Marketing Executive — không phải người quyết định. Mục tiêu: xin thông tin và đường dẫn lên đúng người phụ trách.</p>
+    <div class="script-step"><span class="script-step-label">Mở đầu</span><p>Dạ chào em, chị là Vy bên PMAX ạ. Chị gọi để trao đổi nhanh về việc tối ưu lead cho các khoá học bên mình, không biết em có phải là người phụ trách mảng này không, hay chị có thể liên hệ với ai để trao đổi thêm được ạ?</p></div><div class="script-step"><span class="script-step-label">Khám phá</span><ul><li>Hiện tại bên mình có gặp khó khăn gì về số lượng hoặc chất lượng lead không em biết không ạ?</li><li>Mảng leadgen bên mình đang do anh/chị nào phụ trách chính ạ?</li></ul></div><div class="script-step"><span class="script-step-label">Xác nhận vai trò &amp; trấn an (S)</span><p>Dạ chị hiểu, không cần em quyết định gì đâu ạ, chị chỉ muốn gửi một tài liệu ngắn gọn để em có thể chuyển tiếp cho anh/chị phụ trách xem trước thôi. Nếu thấy phù hợp thì mình sắp xếp một buổi trao đổi sau cũng được ạ.</p></div><div class="script-step"><span class="script-step-label">Solution Story (rút gọn)</span><p>Bên chị hiện đang giúp một số đơn vị giáo dục tối ưu toàn bộ phễu từ targeting đến landing page để tăng lead chất lượng, có cả phần phân tích lead trước khi scale ngân sách nên khá an toàn để thử. Chị sẽ gửi 1 trang tóm tắt ngắn để em tiện chuyển tiếp nhé.</p></div><div class="script-step"><span class="script-step-label">Chốt next step</span><p>Em cho chị xin email để gửi tài liệu, và nếu tiện, em giúp chị xin thông tin liên hệ của anh/chị phụ trách để chị follow-up trực tiếp được không ạ? Chị cảm ơn em nhiều.</p></div>
+  </div>
+      <div class="footer-nav"><button data-next="mmm">← MMM</button><button data-next="objections">Tiếp: Xử lý từ chối →</button></div>
+    </section>
+
+    <section class="panel" id="panel-objections" data-title="Xử lý từ chối">
+      <div class="panel-eyebrow">Phần 6</div>
+      <h1>Xử lý 3 lý do từ chối phổ biến nhất</h1>
+      <p class="panel-sub">Cấu trúc 7 phần: Situation → Customer Statement → Sale Response → Follow-up → Coach Notes → Mistakes → When to Stop</p>
+      <div class="objection-card">
+    <h3>6.1 Không có thời gian</h3>
+    <table><tr><td class="obj-key">Situation</td><td>Xảy ra ngay trong 10–15 giây đầu cuộc gọi (Opening), khi khách đang bận hoặc chưa thấy lý do để dành thời gian.</td></tr><tr><td class="obj-key">Customer Statement</td><td>“Chị đang bận lắm, em để lại thông tin qua email nhé.” / “Anh không có thời gian đâu.”</td></tr><tr><td class="obj-key">Sale Response</td><td>“Dạ em hiểu ạ, em chỉ xin đúng 30 giây để chia sẻ lý do em gọi, nếu không phù hợp em xin phép dừng ngay ạ.” Nếu vẫn từ chối: “Vậy để không làm phiền anh/chị, em xin phép gọi lại vào [khung giờ cụ thể] được không ạ, hay anh/chị có khung giờ nào thuận tiện hơn?”</td></tr><tr><td class="obj-key">Follow-up Question</td><td>“Anh/chị thường rảnh hơn vào buổi sáng hay buổi chiều ạ?”</td></tr><tr><td class="obj-key">Coach Notes</td><td>Đây thường là rào cản bề mặt (surface objection), không phải từ chối thật — mục tiêu là giữ cửa mở, không cố bán trong tình huống này.</td></tr><tr><td class="obj-key">Mistakes</td><td>Cố nói nhanh để nhồi hết thông tin trong 30 giây đã hứa — phá vỡ lòng tin ngay câu đầu. Hỏi quá nhiều câu trước khi xin phép.</td></tr><tr><td class="obj-key">When to Stop</td><td>Nếu khách từ chối 2 lần liên tiếp việc hẹn lịch lại, dừng cuộc gọi, chuyển sang follow-up qua email/Zalo thay vì tiếp tục cố gọi.</td></tr></table>
+  </div>
+<div class="objection-card">
+    <h3>6.2 Không có Budget</h3>
+    <table><tr><td class="obj-key">Situation</td><td>Thường xuất hiện ở bước Solution Recommendation/Value Proposition, sau khi khách đã nghe sơ qua về giải pháp.</td></tr><tr><td class="obj-key">Customer Statement</td><td>“Bên em hiện chưa có ngân sách cho việc này.” / “Ngân sách marketing năm nay đã chốt hết rồi.”</td></tr><tr><td class="obj-key">Sale Response</td><td>“Dạ em hiểu, nhiều anh chị em làm việc cùng cũng ở tình huống tương tự lúc đầu trao đổi. Cho em hỏi thêm, hiện tại ngân sách đã chốt cho cả năm hay chỉ tạm thời chưa ưu tiên ạ? Vì thực ra tụi em cũng có những gói linh hoạt theo từng giai đoạn ngân sách, không nhất thiết phải là khoản đầu tư lớn ngay từ đầu.”</td></tr><tr><td class="obj-key">Follow-up Question</td><td>“Nếu có một giải pháp phù hợp với ngân sách hiện tại, anh/chị có sẵn sàng nghe thử không ạ?” hoặc “Ngân sách dự kiến sẽ được review lại vào thời điểm nào ạ?”</td></tr><tr><td class="obj-key">Coach Notes</td><td>Phân biệt rõ 2 tình huống: (1) thật sự không có ngân sách — cần hẹn follow-up đúng chu kỳ ngân sách; (2) chưa thấy đủ giá trị để ưu tiên ngân sách — cần quay lại Pain/ROI để làm rõ giá trị trước khi nói tiếp về giá.</td></tr><tr><td class="obj-key">Mistakes</td><td>Giảm giá ngay lập tức để giữ chân khách — làm giảm giá trị cảm nhận. Bỏ cuộc ngay khi nghe “không có ngân sách” mà không tìm hiểu nguyên nhân thật.</td></tr><tr><td class="obj-key">When to Stop</td><td>Nếu khách xác nhận ngân sách đã khoá hoàn toàn cho cả năm và không có ngoại lệ, chuyển sang nuôi dưỡng dài hạn, hẹn quay lại đúng chu kỳ ngân sách tiếp theo.</td></tr></table>
+  </div>
+<div class="objection-card">
+    <h3>6.3 Không có nhu cầu</h3>
+    <table><tr><td class="obj-key">Situation</td><td>Xuất hiện sau khi giới thiệu ngắn về PMAX hoặc trong Discovery, khi khách cho rằng hiện tại không cần giải pháp này.</td></tr><tr><td class="obj-key">Customer Statement</td><td>“Bên anh/chị hiện không có nhu cầu marketing thêm.” / “Team em tự làm được rồi.”</td></tr><tr><td class="obj-key">Sale Response</td><td>“Dạ em hiểu, nhiều khách hàng bên em cũng nói vậy lúc đầu, vì team tự làm cũng ổn ở giai đoạn hiện tại. Cho em hỏi thêm, hiện tại kết quả marketing team đang có so với mục tiêu tăng trưởng năm nay đã đạt được như kỳ vọng chưa ạ?”</td></tr><tr><td class="obj-key">Follow-up Question</td><td>“Nếu có một cách giúp team giảm tải công việc mà vẫn giữ được kết quả, hoặc tăng thêm kết quả với cùng nguồn lực, anh/chị có muốn tham khảo không ạ?”</td></tr><tr><td class="obj-key">Coach Notes</td><td>“Không có nhu cầu” thường là chưa nhận ra pain, chứ không phải thật sự không có vấn đề — quay lại Discovery để khai thác Business Goal/Current Challenge thay vì thuyết phục trực tiếp.</td></tr><tr><td class="obj-key">Mistakes</td><td>Tranh luận để chứng minh khách “sai” khi nói không cần. Giới thiệu giải pháp ngay khi chưa xác nhận được pain thật.</td></tr><tr><td class="obj-key">When to Stop</td><td>Nếu sau 2 câu hỏi mở khách vẫn khẳng định chắc chắn không có vấn đề gì cần giải quyết và không có dấu hiệu tò mò, tôn trọng quyết định, xin phép giữ liên lạc định kỳ, không ép tiếp.</td></tr></table>
+  </div>
+      <div class="callout">3 objection còn lại trong khung chuẩn PMAX (Previous Failure, Need Approval, Existing Agency, AI Concern) chưa có nội dung chi tiết trong bộ tài liệu tham khảo hiện có — cần bổ sung từ tài liệu Objection Handling gốc hoặc từ workshop &ldquo;Meeting Skills&rdquo; sắp tới.</div>
+      <div class="footer-nav"><button data-next="full-scripts">← Script mẫu đầy đủ</button><button data-next="appendix">Tiếp: Phụ lục →</button></div>
+    </section>
+
+    <section class="panel" id="panel-appendix" data-title="Phụ lục">
+      <div class="panel-eyebrow">Phụ lục</div>
+      <h1>Tóm tắt Sales Call Journey gốc</h1>
+      <p class="panel-sub">Framework 5 biến số lồng vào các bước dưới đây</p>
+      <table>
+        <thead><tr><th>Bước</th><th>Mục tiêu</th></tr></thead>
+        <tbody>
+          <tr><td>0. Pre-call Preparation</td><td>Research company, research DM, xác định call objective</td></tr>
+          <tr><td>1. Opening</td><td>Tạo lý do chính đáng để khách tiếp tục nghe trong 30 giây đầu</td></tr>
+          <tr><td>2. Discovery</td><td>Hiểu Business Goal → Marketing Goal → Current Challenge → Pain</td></tr>
+          <tr><td>3. Pain Identification</td><td>Xác định khách có vấn đề đủ lớn để cần giải pháp hay chưa</td></tr>
+          <tr><td>4. Solution Recommendation</td><td>Chuyển từ Discovery sang Solution Consulting — nơi framework 5 biến số áp dụng</td></tr>
+          <tr><td>5. Value Proposition</td><td>Khẳng định PMAX giúp giải đúng vấn đề kinh doanh, không chỉ bán dịch vụ</td></tr>
+          <tr><td>6. Book Meeting</td><td>Chuyển từ Call sang Strategy Consulting Session</td></tr>
+          <tr><td>7. Objection Handling</td><td>Xử lý Budget, Previous Failure, Need Approval, Existing Agency, AI Concern, Not Priority</td></tr>
+        </tbody>
+      </table>
+      <div class="footer-nav"><button data-next="objections">← Xử lý từ chối</button><span></span></div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  var order = ["framework","level","prep","ai-skill","influencer","creative","strategy","scanmax","auditvista","media","leadgen","branding","mmm","full-scripts","objections","appendix"];
+  var STORAGE_KEY = "pmax_playbook_progress_v1";
+
+  function loadProgress(){
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e){ return {}; }
+  }
+  function saveProgress(p){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch(e){}
+  }
+  var progress = loadProgress();
+
+  function updateProgressUI(){
+    var visitedCount = order.filter(function(id){ return progress[id]; }).length;
+    var pct = Math.round((visitedCount / order.length) * 100);
+    document.getElementById("progress-text").textContent = visitedCount + "/" + order.length + " phần đã đọc";
+    document.getElementById("progress-pct").textContent = pct + "%";
+    document.getElementById("progress-fill").style.width = pct + "%";
+    order.forEach(function(id){
+      var item = document.querySelector('.nav-item[data-target="' + id + '"]');
+      if(item){ item.classList.toggle("visited", !!progress[id]); }
+    });
+  }
+
+  function showTab(id, pushHash){
+    order.forEach(function(tid){
+      var panel = document.getElementById("panel-" + tid);
+      var item = document.querySelector('.nav-item[data-target="' + tid + '"]');
+      var active = tid === id;
+      if(panel) panel.classList.toggle("active", active);
+      if(item) item.classList.toggle("active", active);
+    });
+    progress[id] = true;
+    saveProgress(progress);
+    updateProgressUI();
+    if(pushHash !== false){
+      try { history.replaceState(null, "", "#" + id); }
+      catch(e) { /* sandboxed preview contexts (e.g. artifact viewers) may block URL changes — safe to ignore */ }
+    }
+    document.querySelector(".content").scrollTo({top:0, behavior:"instant"});
+    window.scrollTo({top:0, behavior:"instant"});
+  }
+
+  document.querySelectorAll(".nav-item").forEach(function(btn){
+    btn.addEventListener("click", function(){ showTab(btn.getAttribute("data-target")); });
+  });
+  document.querySelectorAll("[data-next]").forEach(function(btn){
+    btn.addEventListener("click", function(){ showTab(btn.getAttribute("data-next")); });
+  });
+  document.getElementById("reset-btn").addEventListener("click", function(){
+    if(confirm("Xoá toàn bộ tiến độ đọc đã lưu trên trình duyệt này?")){
+      progress = {};
+      saveProgress(progress);
+      updateProgressUI();
+    }
+  });
+  document.querySelectorAll(".copy-btn").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var target = document.getElementById(btn.getAttribute("data-copy-target"));
+      var text = target ? target.textContent : "";
+      navigator.clipboard.writeText(text).then(function(){
+        btn.textContent = "Copied ✓";
+        btn.classList.add("copied");
+        setTimeout(function(){ btn.textContent = "Copy"; btn.classList.remove("copied"); }, 1600);
+      });
+    });
+  });
+
+  var initial = (location.hash || "").replace("#","");
+  if(order.indexOf(initial) === -1){ initial = order[0]; }
+  showTab(initial, false);
+  updateProgressUI();
+})();
+</script>
+</body>
+</html>
