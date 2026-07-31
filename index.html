@@ -5,163 +5,256 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>REV Team — Sales Call Playbook — Product × DM × 3 USP × ROI × DISC</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Source+Code+Pro:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#16233A;
-  --ink-soft:#2B3A54;
-  --paper:#FAF7F1;
+  /* PMAX Brand System v1.0 tokens */
+  --pmax-blue:#0000FF;
+  --pmax-blue-90:#1a1aff;
+  --pmax-blue-70:#4d4dff;
+  --pmax-blue-40:#9999ff;
+  --pmax-blue-10:#e6e6ff;
+  --pmax-blue-05:#f2f2ff;
+  --pmax-azure:#0080FF;
+  --pmax-aqua:#00ffff;
+  --pmax-red:#FF0000;
+  --pmax-focus-soft:#ffd6d6;
+  --pmax-vivid-orange:#FF6000;
+  --pmax-orange:#FFA500;
+  --ink:#14142B;
+  --ink-muted:#4a4a66;
+  --ink-subtle:#7c7c99;
+  --paper:#FFFFFF;
   --card:#FFFFFF;
-  --brass:#B9873E;
-  --brass-deep:#8F672B;
-  --line:#E4DDCB;
-  --text:#26241E;
-  --muted:#716F66;
-  --d-color:#B84B36;
-  --i-color:#C99A2E;
-  --s-color:#3E7A68;
-  --c-color:#3C5C82;
-  --radius:2px;
+  --line:#E4E4F0;
+  --line-strong:#c7c7dc;
+  --text:#14142B;
+  --muted:#4a4a66;
+  /* DISC accents mapped to non-reserved brand hues (avoids Red=focus and Green=positive) */
+  --d-color:#a63c00;   /* vivid-orange family (decisive/energy) */
+  --d-bg:#ffe4d1;
+  --i-color:#004a99;   /* azure family (expressive/communicative) */
+  --i-bg:#dcecff;
+  --s-color:#4a4a66;   /* neutral grey (steady/calm) */
+  --s-bg:#eceef5;
+  --c-color:#0000FF;   /* structural blue (data/logic) */
+  --c-bg:#f2f2ff;
+  --radius:4px;
+  --sidebar-w:300px;
+  --topbar-h:56px;
+  --sh-card-soft:0 1px 2px rgba(0,0,40,.04), 0 4px 10px rgba(0,0,80,.05);
+  --sh-blue:0 10px 24px rgba(0,0,255,.20);
 }
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;}
 body{
-  font-family:'IBM Plex Sans', system-ui, sans-serif;
+  font-family:'Archivo', 'Helvetica Neue', Arial, sans-serif;
   background:var(--paper);
   color:var(--text);
   line-height:1.6;
+  -webkit-font-smoothing:antialiased;
 }
-h1,h2,h3{font-family:'Fraunces', Georgia, serif; color:var(--ink); font-weight:600; letter-spacing:-0.01em;}
-h1{font-size:2.1rem; margin:0 0 .2rem;}
-h3{font-size:1.05rem; margin:1.6rem 0 .5rem; color:var(--brass-deep); text-transform:uppercase; letter-spacing:.04em; font-weight:600;}
+h1,h2,h3{font-family:'Archivo', 'Helvetica Neue', Arial, sans-serif; color:var(--pmax-blue); font-weight:800; letter-spacing:-0.01em;}
+h1{font-size:clamp(1.5rem, 1.15rem + 1.6vw, 2.1rem); margin:0 0 .2rem; line-height:1.15;}
+h3{font-size:1.02rem; margin:1.6rem 0 .5rem; color:var(--pmax-blue-70); text-transform:uppercase; letter-spacing:.05em; font-weight:700;}
 p{margin:.4rem 0 .8rem;}
-.hint{font-family:'IBM Plex Sans'; text-transform:none; letter-spacing:0; color:var(--muted); font-size:.8rem; font-weight:400;}
+a{color:var(--pmax-azure); transition:color .12s ease;}
+a:hover{color:var(--pmax-blue);}
+.hint{font-family:'Archivo'; text-transform:none; letter-spacing:0; color:var(--muted); font-size:.8rem; font-weight:400;}
+:focus-visible{outline:2px solid var(--pmax-blue); outline-offset:2px;}
+
+/* mobile top bar */
+.mobile-bar{
+  display:none; position:sticky; top:0; z-index:40; align-items:center; gap:.8rem;
+  height:var(--topbar-h); padding:0 1rem; background:var(--pmax-blue); color:#fff;
+  box-shadow:0 1px 0 rgba(0,0,0,.15);
+}
+.hamburger{
+  background:transparent; border:1px solid rgba(255,255,255,.35); color:#fff; width:36px; height:36px;
+  border-radius:var(--radius); font-size:1.1rem; cursor:pointer; flex:none; line-height:1;
+  display:flex; align-items:center; justify-content:center;
+}
+.mobile-bar-title{font-family:'Archivo', sans-serif; font-size:1rem; font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.sidebar-overlay{display:none; position:fixed; inset:0; background:rgba(20,20,43,.55); z-index:45;}
+.sidebar-overlay.open{display:block;}
 
 /* layout */
 .app{display:flex; min-height:100vh;}
 .sidebar{
-  width:300px; flex:none; background:var(--ink); color:#EDEAE0;
+  width:var(--sidebar-w); flex:none; background:var(--pmax-blue); color:#EAEAFF;
   padding:1.6rem 1.1rem 1.6rem; position:sticky; top:0; height:100vh; overflow-y:auto;
+  scrollbar-width:thin; scrollbar-color:rgba(255,255,255,.3) transparent;
 }
-.brand{padding:0 .4rem 1.1rem; border-bottom:1px solid rgba(255,255,255,.14); margin-bottom:1.1rem;}
-.brand .mark{font-family:'IBM Plex Mono', monospace; font-size:.7rem; letter-spacing:.14em; color:var(--brass); text-transform:uppercase;}
-.brand h2{font-family:'Fraunces', serif; color:#fff; font-size:1.28rem; margin:.35rem 0 .15rem; line-height:1.25;}
-.brand .tag{font-size:.78rem; color:#B9B6AA;}
+.sidebar::-webkit-scrollbar{width:6px;}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.25); border-radius:3px;}
+.brand{padding:0 .4rem 1.1rem; border-bottom:1px solid rgba(255,255,255,.2); margin-bottom:1.1rem;}
+.brand .mark{font-family:'Source Code Pro', monospace; font-size:.68rem; letter-spacing:.16em; color:var(--pmax-orange); text-transform:uppercase; font-weight:600;}
+.brand h2{font-family:'Archivo', sans-serif; color:#fff; font-size:1.24rem; font-weight:800; margin:.35rem 0 .15rem; line-height:1.25;}
+.brand .tag{font-size:.78rem; color:var(--pmax-blue-40);}
 
 .progress-wrap{padding:0 .4rem 1.2rem;}
-.progress-label{display:flex; justify-content:space-between; font-size:.72rem; color:#B9B6AA; margin-bottom:.35rem; font-family:'IBM Plex Mono', monospace; letter-spacing:.03em;}
-.progress-bar{height:5px; background:rgba(255,255,255,.14); border-radius:3px; overflow:hidden;}
-.progress-fill{height:100%; width:0%; background:var(--brass); transition:width .35s ease;}
+.progress-label{display:flex; justify-content:space-between; font-size:.72rem; color:var(--pmax-blue-40); margin-bottom:.35rem; font-family:'Source Code Pro', monospace; letter-spacing:.03em;}
+.progress-bar{height:5px; background:rgba(255,255,255,.18); border-radius:3px; overflow:hidden;}
+.progress-fill{height:100%; width:0%; background:var(--pmax-vivid-orange); transition:width .35s ease;}
 
 nav.nav-list{display:flex; flex-direction:column; gap:2px;}
 .nav-item{
   display:flex; align-items:center; gap:.6rem; width:100%; text-align:left;
-  background:transparent; border:none; color:#D7D4C7; padding:.5rem .5rem;
-  border-radius:var(--radius); cursor:pointer; font-family:'IBM Plex Sans'; font-size:.87rem;
+  background:transparent; border:none; color:#D6D6F5; padding:.5rem .5rem;
+  border-radius:var(--radius); cursor:pointer; font-family:'Archivo', sans-serif; font-size:.87rem; font-weight:500;
+  transition:background .15s ease, color .15s ease;
 }
-.nav-item:hover{background:rgba(255,255,255,.06);}
-.nav-item.active{background:rgba(185,135,62,.18); color:#fff;}
-.nav-num{font-family:'IBM Plex Mono', monospace; font-size:.72rem; color:var(--brass); width:2.1rem; flex:none;}
+.nav-item:hover{background:rgba(255,255,255,.1);}
+.nav-item.active{
+  background:#fff; color:var(--pmax-blue); font-weight:800;
+  clip-path:polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%); margin-right:.6rem;
+}
+.nav-item.active .nav-num{color:var(--pmax-vivid-orange);}
+.nav-num{font-family:'Source Code Pro', monospace; font-size:.72rem; color:var(--pmax-orange); width:2.1rem; flex:none; font-weight:600;}
 .nav-label{flex:1;}
-.nav-check{opacity:0; color:#8FBBA4; font-size:.85rem;}
+.nav-check{opacity:0; color:var(--pmax-aqua); font-size:.85rem; transition:opacity .15s ease;}
+.nav-item.active .nav-check{color:var(--pmax-vivid-orange);}
 .nav-item.visited .nav-check{opacity:1;}
 
 .reset-btn{
-  margin-top:1rem; width:100%; background:transparent; border:1px solid rgba(255,255,255,.18);
-  color:#B9B6AA; padding:.5rem; font-size:.72rem; border-radius:var(--radius); cursor:pointer;
-  font-family:'IBM Plex Mono', monospace; letter-spacing:.03em;
+  margin-top:1rem; width:100%; background:transparent; border:1px solid rgba(255,255,255,.3);
+  color:var(--pmax-blue-40); padding:.5rem; font-size:.72rem; border-radius:var(--radius); cursor:pointer;
+  font-family:'Source Code Pro', monospace; letter-spacing:.03em; transition:border-color .15s ease, color .15s ease;
 }
-.reset-btn:hover{border-color:var(--brass); color:#fff;}
+.reset-btn:hover{border-color:var(--pmax-orange); color:#fff;}
 
 /* content */
-.content{flex:1; padding:3rem 4rem 5rem; max-width:840px;}
+.content{flex:1; min-width:0; padding:3rem 4rem 5rem; max-width:880px;}
 .panel{display:none;}
 .panel.active{display:block; animation:fade .25s ease;}
 @keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
-.panel-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--brass-deep); margin-bottom:.5rem;}
-.panel-sub{color:var(--muted); font-size:1.05rem; margin-top:0;}
+.panel-eyebrow{
+  font-family:'Source Code Pro', monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--pmax-blue-70); margin-bottom:.5rem; display:flex; align-items:center;
+}
+.panel-eyebrow::before{
+  content:''; display:inline-block; width:7px; height:7px; background:var(--pmax-red);
+  transform:rotate(23.5deg); margin-right:8px; flex:none;
+}
+.panel-sub{color:var(--muted); font-size:clamp(.95rem, .88rem + .3vw, 1.05rem); margin-top:0;}
 
-table{border-collapse:collapse; width:100%; margin:.6rem 0 1rem; font-size:.92rem;}
-th,td{border:1px solid var(--line); padding:.55rem .7rem; text-align:left; vertical-align:top;}
-th{background:var(--ink); color:#fff; font-weight:600; font-size:.82rem;}
-tr:nth-child(even) td{background:#F3EFE4;}
+.table-scroll{overflow-x:auto; margin:.6rem 0 1rem; -webkit-overflow-scrolling:touch; border:1px solid var(--line); border-radius:var(--radius);}
+.table-scroll table{margin:0; border:none;}
+table{border-collapse:collapse; width:100%; min-width:560px; margin:.6rem 0 1rem; font-size:.9rem; background:var(--card);}
+th,td{border-bottom:1px solid var(--line); padding:.6rem .75rem; text-align:left; vertical-align:top;}
+th{background:var(--pmax-blue); color:#fff; font-weight:700; font-size:.74rem; text-transform:uppercase; letter-spacing:.06em; font-family:'Source Code Pro', monospace; position:sticky; top:0;}
+tr:nth-child(even) td{background:var(--pmax-blue-05);}
+tbody tr:hover td{background:var(--pmax-blue-10);}
 
 .usp-list{padding-left:1.2rem;}
 .usp-list li{margin-bottom:.5rem;}
 
 .disc-grid{display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin:.6rem 0 1.2rem;}
 .disc-card{
-  border-left:4px solid var(--muted); background:var(--card); padding:.75rem .9rem;
-  border-radius:0 var(--radius) var(--radius) 0; box-shadow:0 1px 2px rgba(0,0,0,.04);
+  border-left:4px solid var(--muted); background:var(--card); border:1px solid var(--line); border-left-width:4px;
+  padding:.75rem .9rem; border-radius:0 var(--radius) var(--radius) 0; box-shadow:var(--sh-card-soft);
+  transition:box-shadow .15s ease, transform .15s ease;
 }
-.disc-card p{margin:.25rem 0 0; font-style:italic; font-size:.92rem;}
-.disc-tag{font-family:'IBM Plex Mono', monospace; font-size:.72rem; letter-spacing:.05em; font-weight:600;}
-.disc-D{border-color:var(--d-color);} .disc-D .disc-tag{color:var(--d-color);}
-.disc-I{border-color:var(--i-color);} .disc-I .disc-tag{color:var(--i-color);}
-.disc-S{border-color:var(--s-color);} .disc-S .disc-tag{color:var(--s-color);}
-.disc-C{border-color:var(--c-color);} .disc-C .disc-tag{color:var(--c-color);}
+.disc-card:hover{box-shadow:0 6px 18px rgba(0,0,90,.10); transform:translateY(-2px);}
+.disc-card p{margin:.35rem 0 0; font-style:italic; font-size:.92rem; color:var(--text);}
+.disc-tag{
+  font-family:'Source Code Pro', monospace; font-size:.68rem; letter-spacing:.05em; font-weight:700;
+  padding:.15rem .5rem; border-radius:999px; text-transform:uppercase;
+}
+.disc-D{border-left-color:var(--pmax-vivid-orange);} .disc-D .disc-tag{background:var(--d-bg); color:var(--d-color);}
+.disc-I{border-left-color:var(--pmax-azure);} .disc-I .disc-tag{background:var(--i-bg); color:var(--i-color);}
+.disc-S{border-left-color:var(--ink-subtle);} .disc-S .disc-tag{background:var(--s-bg); color:var(--s-color);}
+.disc-C{border-left-color:var(--pmax-blue);} .disc-C .disc-tag{background:var(--c-bg); color:var(--c-color);}
 
-.callout{border:1px solid var(--line); border-left:4px solid var(--brass); background:#FFF; padding:.8rem 1rem; margin:.8rem 0; font-size:.92rem; border-radius:0 var(--radius) var(--radius) 0;}
-.callout-warn{border-left-color:#B84B36;}
+.callout{border:1px solid var(--line); border-left:4px solid var(--pmax-blue); background:var(--pmax-blue-05); padding:.8rem 1rem; margin:.8rem 0; font-size:.92rem; border-radius:0 var(--radius) var(--radius) 0;}
+.callout-warn{border-left-color:var(--pmax-red); background:var(--pmax-focus-soft);}
 
-.quote-line{border-left:3px solid var(--brass); padding:.4rem .8rem; margin:.5rem 0; background:#fff;}
-.quote-line b{color:var(--ink);}
+.download-btn{
+  display:inline-flex; align-items:center; gap:.55rem; background:var(--pmax-blue); color:#fff;
+  font-family:'Archivo', sans-serif; font-weight:700; font-size:.9rem; text-decoration:none;
+  padding:.7rem 1.2rem; border-radius:var(--radius); box-shadow:var(--sh-blue); margin:.9rem 0 1.4rem;
+  transition:background .15s ease, transform .15s ease;
+}
+.download-btn:hover{background:var(--pmax-blue-90); color:#fff; transform:translateY(-1px);}
+.download-icon{font-size:1.05rem; line-height:1;}
+
+.quote-line{border-left:3px solid var(--pmax-blue); padding:.4rem .8rem; margin:.5rem 0; background:var(--pmax-blue-05);}
+.quote-line b{color:var(--pmax-blue);}
 
 .prompt-box{
-  position:relative; background:#0F1A2B; color:#E7E4D8; padding:1.1rem 1.2rem; border-radius:var(--radius);
-  font-family:'IBM Plex Mono', monospace; font-size:.82rem; line-height:1.65; white-space:pre-wrap; margin:.7rem 0 1.3rem;
+  position:relative; background:var(--ink); color:#E8E8F5; padding:1.1rem 1.2rem; padding-top:2.6rem; border-radius:var(--radius);
+  font-family:'Source Code Pro', monospace; font-size:.82rem; line-height:1.65; white-space:pre-wrap; word-break:break-word; margin:.7rem 0 1.3rem;
 }
 .copy-btn{
-  position:absolute; top:.6rem; right:.6rem; background:var(--brass); color:#1a1204; border:none;
-  padding:.32rem .7rem; font-size:.72rem; font-family:'IBM Plex Mono',monospace; border-radius:var(--radius);
-  cursor:pointer; letter-spacing:.03em;
+  position:absolute; top:.6rem; right:.6rem; background:var(--pmax-vivid-orange); color:#fff; border:none;
+  padding:.32rem .7rem; font-size:.72rem; font-family:'Source Code Pro',monospace; font-weight:600; border-radius:var(--radius);
+  cursor:pointer; letter-spacing:.03em; transition:background .15s ease;
 }
-.copy-btn:hover{background:#D3A85B;}
-.copy-btn.copied{background:#3E7A68; color:#fff;}
+.copy-btn:hover{background:#e65600;}
+.copy-btn.copied{background:var(--pmax-blue); color:#fff;}
 
 .steps{counter-reset:step; list-style:none; padding:0; margin:.8rem 0 1.3rem;}
 .steps li{counter-increment:step; position:relative; padding:.4rem 0 .4rem 2.4rem; margin-bottom:.3rem;}
 .steps li::before{
   content:counter(step); position:absolute; left:0; top:.3rem; width:1.6rem; height:1.6rem;
-  border-radius:50%; background:var(--ink); color:var(--brass); font-family:'IBM Plex Mono',monospace;
-  font-size:.78rem; display:flex; align-items:center; justify-content:center; font-weight:600;
+  border-radius:50%; background:var(--pmax-blue); color:#fff; font-family:'Source Code Pro',monospace;
+  font-size:.78rem; display:flex; align-items:center; justify-content:center; font-weight:700;
 }
 
-.footer-nav{display:flex; justify-content:space-between; margin-top:2.6rem; padding-top:1.2rem; border-top:1px solid var(--line);}
+.footer-nav{display:flex; justify-content:space-between; gap:.6rem; margin-top:2.6rem; padding-top:1.2rem; border-top:1px solid var(--line);}
 .footer-nav button{
-  background:var(--ink); color:#fff; border:none; padding:.6rem 1.1rem; font-family:'IBM Plex Sans';
-  font-size:.85rem; border-radius:var(--radius); cursor:pointer;
+  background:var(--pmax-blue); color:#fff; border:2px solid transparent; padding:.6rem 1.1rem; font-family:'Archivo', sans-serif;
+  font-weight:700; font-size:.85rem; border-radius:var(--radius); cursor:pointer; box-shadow:var(--sh-blue);
+  transition:background .15s ease, transform .15s ease;
 }
-.footer-nav button:hover{background:var(--ink-soft);}
-.footer-nav button:disabled{opacity:.3; cursor:default;}
+.footer-nav button:hover{background:var(--pmax-blue-90); transform:translateY(-1px);}
+.footer-nav button:disabled{opacity:.3; cursor:default; transform:none; box-shadow:none;}
 
-.script-card{border:1px solid var(--line); background:var(--card); border-radius:var(--radius); padding:1.1rem 1.3rem; margin:1.3rem 0; box-shadow:0 1px 2px rgba(0,0,0,.04);}
+.script-card{border:1px solid var(--line); background:var(--card); border-radius:var(--radius); padding:1.1rem 1.3rem; margin:1.3rem 0; box-shadow:var(--sh-card-soft);}
 .script-card-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:.6rem; justify-content:space-between;}
-.script-title{margin:0; font-size:1.15rem;}
-.script-tag{font-family:'IBM Plex Mono', monospace; font-size:.72rem; color:#fff; background:var(--ink); padding:.2rem .55rem; border-radius:2px; white-space:nowrap;}
+.script-title{margin:0; font-size:1.1rem; text-transform:none;}
+.script-tag{font-family:'Source Code Pro', monospace; font-size:.7rem; font-weight:700; color:#fff; background:var(--pmax-blue); padding:.2rem .55rem; border-radius:999px; white-space:nowrap;}
 .script-context{color:var(--muted); font-size:.9rem; margin:.5rem 0 .9rem; padding-bottom:.7rem; border-bottom:1px dashed var(--line);}
 .script-step{margin-bottom:.7rem;}
-.script-step-label{display:block; font-family:'IBM Plex Mono', monospace; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--brass-deep); font-weight:600; margin-bottom:.2rem;}
+.script-step-label{display:block; font-family:'Source Code Pro', monospace; font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; color:var(--pmax-blue-70); font-weight:700; margin-bottom:.2rem;}
 .script-step p{margin:.1rem 0;}
 .script-step ul{margin:.2rem 0; padding-left:1.1rem;}
 .script-step li{margin-bottom:.2rem;}
 
 .objection-card{margin:1.2rem 0 1.6rem;}
 .objection-card h3{margin-bottom:.4rem;}
-.objection-card table{font-size:.88rem;}
-.obj-key{font-weight:600; color:var(--ink); width:160px; white-space:nowrap; background:#F3EFE4;}
+.objection-card table{font-size:.87rem; min-width:480px;}
+.obj-key{font-weight:700; color:var(--pmax-blue); width:160px; white-space:nowrap; background:var(--pmax-blue-05); font-family:'Source Code Pro', monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.04em;}
 
 @media (max-width:880px){
+  .mobile-bar{display:flex;}
   .app{flex-direction:column;}
-  .sidebar{width:100%; height:auto; position:relative;}
-  .content{padding:2rem 1.3rem 3rem;}
+  .sidebar{
+    position:fixed; top:0; left:0; z-index:50; height:100vh; width:min(300px, 84vw);
+    transform:translateX(-100%); transition:transform .22s ease; box-shadow:2px 0 20px rgba(0,0,0,.25);
+  }
+  .sidebar.open{transform:translateX(0);}
+  .content{padding:1.6rem 1.2rem 3rem; max-width:100%;}
   .disc-grid{grid-template-columns:1fr;}
+  h1{font-size:1.55rem;}
+}
+@media (max-width:520px){
+  .content{padding:1.2rem .9rem 2.6rem;}
+  .script-card{padding:.9rem 1rem;}
+  .footer-nav{flex-wrap:wrap;}
+  .footer-nav button{flex:1 1 auto; text-align:center;}
 }
 </style>
 </head>
 <body>
+<div class="mobile-bar">
+  <button class="hamburger" id="hamburger-btn" aria-label="Mở menu" aria-expanded="false">&#9776;</button>
+  <span class="mobile-bar-title" id="mobile-bar-title">Sales Call Playbook</span>
+</div>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
 <div class="app">
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="brand">
       <div class="mark">PMAX &middot; REV Team</div>
       <h2>Sales Call Playbook</h2>
@@ -178,77 +271,77 @@ tr:nth-child(even) td{background:#F3EFE4;}
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="level">
-    <span class="nav-num">0.4</span>
+    <span class="nav-num">01</span>
     <span class="nav-label">Level & Vai trò DM</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="prep">
-    <span class="nav-num">0.5</span>
+    <span class="nav-num">02</span>
     <span class="nav-label">Chuẩn bị trước Call</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="ai-skill">
-    <span class="nav-num">0.9</span>
+    <span class="nav-num">03</span>
     <span class="nav-label">Cài AI Skill</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="influencer">
-    <span class="nav-num">01</span>
+    <span class="nav-num">04</span>
     <span class="nav-label">Influencer</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="creative">
-    <span class="nav-num">02</span>
+    <span class="nav-num">05</span>
     <span class="nav-label">Creative</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="strategy">
-    <span class="nav-num">03</span>
+    <span class="nav-num">06</span>
     <span class="nav-label">Strategy</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="scanmax">
-    <span class="nav-num">04</span>
+    <span class="nav-num">07</span>
     <span class="nav-label">ScanMax</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="auditvista">
-    <span class="nav-num">05</span>
+    <span class="nav-num">08</span>
     <span class="nav-label">Audit Vista</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="media">
-    <span class="nav-num">06</span>
+    <span class="nav-num">09</span>
     <span class="nav-label">Media</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="leadgen">
-    <span class="nav-num">07</span>
+    <span class="nav-num">10</span>
     <span class="nav-label">Leadgen</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="branding">
-    <span class="nav-num">08</span>
+    <span class="nav-num">11</span>
     <span class="nav-label">Branding</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="mmm">
-    <span class="nav-num">09</span>
+    <span class="nav-num">12</span>
     <span class="nav-label">MMM</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="full-scripts">
-    <span class="nav-num">10</span>
+    <span class="nav-num">13</span>
     <span class="nav-label">Script mẫu đầy đủ</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="objections">
-    <span class="nav-num">11</span>
+    <span class="nav-num">14</span>
     <span class="nav-label">Xử lý từ chối</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
 <button class="nav-item" data-target="appendix">
-    <span class="nav-num">12</span>
+    <span class="nav-num">15</span>
     <span class="nav-label">Phụ lục</span>
     <span class="nav-check" aria-hidden="true">✓</span>
   </button>
@@ -415,6 +508,11 @@ tr:nth-child(even) td{background:#F3EFE4;}
       <p class="panel-sub">Cài 1 lần, dùng mãi mãi. Không cần đọc thuộc framework.</p>
 
       <div class="callout"><strong>Tệp đi kèm:</strong> <code>pmax-sales-call-script.zip</code> &mdash; đây là một Claude Skill đã đóng gói sẵn toàn bộ dữ liệu 9 sản phẩm, DM, USP, ROI và DISC ở trang này. Sau khi cài, chỉ cần <em>nhắn chuyện bình thường</em> với Claude, không cần nhớ hay gõ lại framework.</div>
+
+      <a class="download-btn" href="./pmax-sales-call-script.zip" download="pmax-sales-call-script.zip">
+        <span class="download-icon" aria-hidden="true">&#8681;</span>
+        Tải Skill AI (pmax-sales-call-script.zip)
+      </a>
 
       <h3>Cách cài trên claude.ai (không cần kỹ thuật)</h3>
       <ol class="steps">
@@ -838,6 +936,15 @@ Yêu cầu: văn phong tiếng Việt tự nhiên, chuyên nghiệp; không quá
     });
   }
 
+  function closeDrawer(){
+    var sidebar = document.getElementById("sidebar");
+    var overlay = document.getElementById("sidebar-overlay");
+    var hamburger = document.getElementById("hamburger-btn");
+    sidebar.classList.remove("open");
+    overlay.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", "false");
+  }
+
   function showTab(id, pushHash){
     order.forEach(function(tid){
       var panel = document.getElementById("panel-" + tid);
@@ -845,6 +952,11 @@ Yêu cầu: văn phong tiếng Việt tự nhiên, chuyên nghiệp; không quá
       var active = tid === id;
       if(panel) panel.classList.toggle("active", active);
       if(item) item.classList.toggle("active", active);
+      if(active && panel){
+        var title = panel.getAttribute("data-title");
+        var mb = document.getElementById("mobile-bar-title");
+        if(mb && title) mb.textContent = title;
+      }
     });
     progress[id] = true;
     saveProgress(progress);
@@ -855,7 +967,17 @@ Yêu cầu: văn phong tiếng Việt tự nhiên, chuyên nghiệp; không quá
     }
     document.querySelector(".content").scrollTo({top:0, behavior:"instant"});
     window.scrollTo({top:0, behavior:"instant"});
+    closeDrawer();
   }
+
+  document.getElementById("hamburger-btn").addEventListener("click", function(){
+    var sidebar = document.getElementById("sidebar");
+    var overlay = document.getElementById("sidebar-overlay");
+    var isOpen = sidebar.classList.toggle("open");
+    overlay.classList.toggle("open", isOpen);
+    this.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+  document.getElementById("sidebar-overlay").addEventListener("click", closeDrawer);
 
   document.querySelectorAll(".nav-item").forEach(function(btn){
     btn.addEventListener("click", function(){ showTab(btn.getAttribute("data-target")); });
@@ -880,6 +1002,16 @@ Yêu cầu: văn phong tiếng Việt tự nhiên, chuyên nghiệp; không quá
         setTimeout(function(){ btn.textContent = "Copy"; btn.classList.remove("copied"); }, 1600);
       });
     });
+  });
+
+  // wrap every table in a horizontally scrollable container so narrow screens
+  // scroll instead of squeezing columns illegible
+  document.querySelectorAll(".content table").forEach(function(tbl){
+    if(tbl.parentElement && tbl.parentElement.classList.contains("table-scroll")) return;
+    var wrap = document.createElement("div");
+    wrap.className = "table-scroll";
+    tbl.parentNode.insertBefore(wrap, tbl);
+    wrap.appendChild(tbl);
   });
 
   var initial = (location.hash || "").replace("#","");
